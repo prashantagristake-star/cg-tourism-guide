@@ -1,2 +1,15 @@
 # cg-tourism-guide
 CG Tourism Guide - Explore the waterfalls, temples, forests, wildlife and culture of Chhattisgarh.
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chhattisgarh Tourism Guide</title>
+</head>
+<body>
+    <h1>छत्तीसगढ़ टूरिज्म गाइड में आपका स्वागत है</h1>
+    <p>यहाँ आपको छत्तीसगढ़ के बेहतरीन पर्यटक स्थल देखने को मिलेंगे।</p>
+</body>
+</html>
+
