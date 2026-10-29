@@ -1,1 +1,250 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#163c32">
+<meta name="description" content="CG Tourism Guide - छत्तीसगढ़ के 33 जिलों के पर्यटन स्थलों की जानकारी।">
+<title>CG Tourism Guide | चलो छत्तीसगढ़ घूमते हैं</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;
+background:#f5f7f0;color:#20352b;line-height:1.7}
+button,input{font:inherit}
+button{cursor:pointer}
+header{position:sticky;top:0;z-index:5;background:#163c32;
+color:white;padding:12px 5%;display:flex;align-items:center;
+justify-content:space-between;gap:10px}
+.logo{font-size:19px;font-weight:bold}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav button{background:transparent;color:white;border:1px solid #739184;
+border-radius:20px;padding:6px 12px}
+.hero{min-height:85vh;display:flex;align-items:center;
+justify-content:center;text-align:center;padding:35px 20px;color:white;
+background:radial-gradient(ellipse at 75% 15%,#b5cb81 0,transparent 32%),
+linear-gradient(145deg,#102f28,#27634b 60%,#71915c)}
+.hero-content{max-width:750px}
+.tag{color:#e1edb8;letter-spacing:2px;font-size:13px}
+h1{font-size:clamp(36px,8vw,64px);line-height:1.2;margin:18px 0}
+.hero p{font-size:18px;color:#e5efe8}
+.btn{border:0;border-radius:30px;padding:12px 22px;
+font-weight:bold;background:#d8e9ad;color:#183d30;margin:7px}
+.btn-outline{background:transparent;border:1px solid white;color:white}
+section{padding:55px 5%;scroll-margin-top:70px}
+.section-title{text-align:center;font-size:clamp(25px,5vw,36px);
+margin:0 0 10px}
+.subtitle{text-align:center;color:#64776b;margin:0 auto 28px;max-width:650px}
+.about{background:#fff}
+.feature-grid,.district-grid{display:grid;
+grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
+.feature{background:#f0f5e9;border-radius:16px;padding:20px;text-align:center}
+.feature span{font-size:30px}
+.feature h3{margin:8px 0 3px}
+.feature p{font-size:14px;margin:0;color:#617268}
+.callout{max-width:750px;margin:28px auto 0;background:#eaf1df;
+padding:20px;border-radius:15px;text-align:center}
+.district-section{background:#edf2e7}
+.search{display:block;width:100%;max-width:600px;margin:0 auto 24px;
+padding:14px 17px;border:1px solid #c8d5c7;border-radius:12px;
+background:white;outline-color:#397859}
+.district-card{background:white;border:1px solid #e0e8dd;
+border-radius:15px;padding:17px;text-align:left;color:#20352b;
+box-shadow:0 3px 10px #1c42200a;transition:transform .2s}
+.district-card:hover{transform:translateY(-3px)}
+.district-card .emoji{font-size:28px}
+.district-card strong{display:block;font-size:16px}
+.district-card small{color:#68786d}
+.details{max-width:800px;margin:28px auto 0;background:white;
+border-radius:18px;padding:22px;box-shadow:0 5px 20px #173b2910}
+.details h3{font-size:25px;margin:0}
+.place{padding:13px 0;border-bottom:1px solid #e4eae1}
+.place:last-child{border:0}
+.place p{margin:4px 0;color:#657469}
+.maplink{color:#176a46;font-weight:bold}
+.hidden{display:none!important}
+.back{border:1px solid #b9c9b8;background:white;border-radius:25px;
+padding:8px 15px;margin-bottom:16px}
+footer{background:#163c32;color:#e8f0e8;text-align:center;padding:28px 15px}
+footer p{font-size:14px}
+@media(max-width:500px){
+ header{padding:10px 4%;flex-wrap:wrap}
+ .logo{font-size:17px}
+ nav button{font-size:12px;padding:5px 9px}
+ section{padding:40px 4%}
+ .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .district-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .district-card{padding:12px}
+ .details{padding:16px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo">🌿 CG Tourism Guide</div>
+  <nav>
+    <button onclick="go('home')">Home</button>
+    <button onclick="go('about')">हमारे बारे में</button>
+    <button onclick="go('districts')">जिले देखें</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">EXPLORE CHHATTISGARH</div>
+    <h1>चलो छत्तीसगढ़<br>घूमते हैं! 🌿</h1>
+    <p>झरने, जंगल, मंदिर, संस्कृति और अपने छत्तीसगढ़ की खूबसूरती को जानें।</p>
+    <button class="btn" onclick="go('about')">🚪 चलो, सफर शुरू करें</button>
+    <br>
+    <button class="btn btn-outline" onclick="go('districts')">सीधे जिले चुनें ↓</button>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2 class="section-title">छत्तीसगढ़ को करीब से जानें</h2>
+  <p class="subtitle">भारत के इस खूबसूरत राज्य की प्राकृतिक सुंदरता, इतिहास और संस्कृति की खोज करें।</p>
+
+  <div class="feature-grid">
+    <div class="feature"><span>🏞️</span><h3>प्रकृति</h3><p>झरने, पहाड़ और जंगल</p></div>
+    <div class="feature"><span>🛕</span><h3>धरोहर</h3><p>मंदिर और ऐतिहासिक स्थल</p></div>
+    <div class="feature"><span>🐘</span><h3>वन्यजीव</h3><p>अभयारण्य और जैव विविधता</p></div>
+    <div class="feature"><span>🎭</span><h3>संस्कृति</h3><p>स्थानीय कला और परंपराएँ</p></div>
+  </div>
+
+  <div class="callout">
+    <h3>इस वेबसाइट का उद्देश्य 💚</h3>
+    <p>छत्तीसगढ़ के पर्यटन स्थलों की जानकारी लोगों तक पहुँचाना,
+    स्थानीय संस्कृति को बढ़ावा देना और प्रकृति के प्रति जिम्मेदारी
+    बढ़ाना, ताकि हम घूमने के साथ अपने पर्यावरण की रक्षा भी करें।</p>
+    <button class="btn" onclick="go('districts')">🚪 अब अपना जिला चुनें</button>
+  </div>
+</section>
+
+<section class="district-section" id="districts">
+  <h2 class="section-title">अपने जिले की खोज करें 🗺️</h2>
+  <p class="subtitle">जिले का नाम खोजें या किसी जिले पर क्लिक करके उसकी पर्यटन गाइड देखें।</p>
+
+  <input class="search" id="search" type="search"
+    placeholder="🔎 जिला खोजें... जैसे Bastar, Raipur, Durg"
+    oninput="filterDistricts()">
+
+  <div class="district-grid" id="districtGrid"></div>
+
+  <div class="details hidden" id="details" aria-live="polite">
+    <button class="back" onclick="closeDetails()">← सभी जिलों पर वापस जाएँ</button>
+    <h3 id="districtTitle"></h3>
+    <p id="districtIntro"></p>
+    <h4>घूमने की जगहें</h4>
+    <div id="places"></div>
+    <p style="font-size:13px;color:#68786d">
+      यात्रा से पहले स्थान, पहुँच, खुलने का समय और प्रवेश नियमों की
+      स्थानीय या आधिकारिक स्रोत से पुष्टि करें।
+    </p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong>🌿 CG Tourism Guide</strong>
+  <p>अपने छत्तीसगढ़ को जानें, घूमें और उसकी प्रकृति को बचाएँ।</p>
+  <p>यह स्वतंत्र पर्यटन जानकारी परियोजना है, सरकारी वेबसाइट नहीं।</p>
+</footer>
+
+<script>
+const districts = [
+["Balod","बालोद","🌾",["सियादेवी मंदिर एवं जलप्रपात","तांदुला जलाशय"]],
+["Baloda Bazar-Bhatapara","बलौदाबाजार-भाटापारा","🏞️",["बारनवापारा वन्यजीव अभयारण्य","गिरौदपुरी धाम"]],
+["Balrampur-Ramanujganj","बलरामपुर-रामानुजगंज","🌳",["तातापानी गर्म जलस्रोत","स्थानीय प्राकृतिक स्थल"]],
+["Bastar","बस्तर","💧",["चित्रकोट जलप्रपात","तीरथगढ़ जलप्रपात","कांगेर घाटी राष्ट्रीय उद्यान","बस्तर की जनजातीय संस्कृति"]],
+["Bemetara","बेमेतरा","🌿",["देवकर का प्राचीन मंदिर क्षेत्र","स्थानीय धार्मिक एवं ग्रामीण स्थल"]],
+["Bijapur","बीजापुर","🌲",["इंद्रावती राष्ट्रीय उद्यान क्षेत्र","स्थानीय प्राकृतिक एवं सांस्कृतिक स्थल"]],
+["Bilaspur","बिलासपुर","🏛️",["अचानकमार टाइगर रिजर्व क्षेत्र","रतनपुर महामाया मंदिर","कानन पेंडारी प्राणी उद्यान"]],
+["Dantewada","दंतेवाड़ा","🛕",["दंतेश्वरी मंदिर","बैलाडीला की पहाड़ियाँ (अनुमति व पहुँच की जाँच करें)"]],
+["Dhamtari","धमतरी","🌊",["गंगरेल बांध","सिहावा क्षेत्र","रुद्री जलाशय क्षेत्र"]],
+["Durg","दुर्ग","🏙️",["मैत्री बाग, भिलाई","देवबलोदा का प्राचीन शिव मंदिर"]],
+["Gariaband","गरियाबंद","💦",["जतमई जलप्रपात","घटारानी जलप्रपात","भूतेश्वरनाथ मंदिर"]],
+["Gaurela-Pendra-Marwahi","गौरेला-पेंड्रा-मरवाही","🌲",["अचानकमार क्षेत्र की प्राकृतिक सुंदरता","पेंड्रा के आसपास के दर्शनीय स्थल"]],
+["Janjgir-Champa","जांजगीर-चांपा","🛕",["विष्णु मंदिर, जांजगीर","शिवरीनारायण मंदिर","लक्ष्मणेश्वर मंदिर, खरौद"]],
+["Jashpur","जशपुर","⛰️",["रानीदाह जलप्रपात","देशदेखा क्षेत्र","कैलाश गुफा क्षेत्र"]],
+["Kabirdham","कबीरधाम","🌿",["भोरमदेव मंदिर","मैकल पर्वतीय क्षेत्र"]],
+["Kanker","उत्तर बस्तर कांकेर","🌳",["कांकेर के आसपास की पहाड़ियाँ","गड़िया पहाड़"]],
+["Khairagarh-Chhuikhadan-Gandai","खैरागढ़-छुईखदान-गंडई","🎨",["इंदिरा कला संगीत विश्वविद्यालय, खैरागढ़","स्थानीय ऐतिहासिक एवं सांस्कृतिक स्थल"]],
+["Kondagaon","कोंडागांव","🧶",["बेल मेटल और हस्तशिल्प केंद्र","स्थानीय कला एवं शिल्प ग्राम"]],
+["Korba","कोरबा","💧",["सतरेंगा","बुका जलाशय क्षेत्र","केंदई जलप्रपात"]],
+["Korea","कोरिया","🌳",["गुरु घासीदास राष्ट्रीय उद्यान क्षेत्र","स्थानीय वन एवं जलप्रपात"]],
+["Mahasamund","महासमुंद","🛕",["सिरपुर पुरातात्विक स्थल","लक्ष्मण मंदिर, सिरपुर","खल्लारी माता मंदिर"]],
+["Manendragarh-Chirmiri-Bharatpur","मनेंद्रगढ़-चिरमिरी-भरतपुर","🌲",["चिरमिरी के पहाड़ी दृश्य","स्थानीय प्राकृतिक स्थल"]],
+["Mohla-Manpur-Ambagarh Chowki","मोहला-मानपुर-अंबागढ़ चौकी","🌿",["वन एवं ग्रामीण प्राकृतिक क्षेत्र","स्थानीय सांस्कृतिक स्थल"]],
+["Mungeli","मुंगेली","🐅",["अचानकमार टाइगर रिजर्व क्षेत्र","मदकू द्वीप"]],
+["Narayanpur","नारायणपुर","🎭",["अबूझमाड़ क्षेत्र (प्रवेश नियमों की पुष्टि जरूरी)","स्थानीय जनजातीय कला एवं संस्कृति"]],
+["Raigarh","रायगढ़","🏛️",["राम झरना","सिंघनपुर शैलचित्र क्षेत्र","गोमर्डा अभयारण्य क्षेत्र"]],
+["Raipur","रायपुर","🏙️",["पुरखौती मुक्तांगन","नंदनवन जंगल सफारी","विवेकानंद सरोवर"]],
+["Rajnandgaon","राजनांदगांव","🌿",["मां बम्लेश्वरी मंदिर, डोंगरगढ़","प्रज्ञागिरि, डोंगरगढ़"]],
+["Sakti","सक्ती","🌊",["दमाऊ धारा क्षेत्र","स्थानीय जलाशय एवं धार्मिक स्थल"]],
+["Sarangarh-Bilaigarh","सारंगढ़-बिलाईगढ़","🌾",["गोमर्डा वन्यजीव अभयारण्य क्षेत्र","स्थानीय प्राकृतिक स्थल"]],
+["Sukma","सुकमा","🌳",["शबरी नदी क्षेत्र","स्थानीय प्रकृति एवं संस्कृति स्थल"]],
+["Surajpur","सूरजपुर","💧",["कुदरगढ़ मंदिर","रकसगंडा जलप्रपात क्षेत्र"]],
+["Surguja","सरगुजा","⛰️",["मैनपाट","टाइगर पॉइंट जलप्रपात","महामाया मंदिर, अंबिकापुर"]]
+];
+
+const grid = document.getElementById("districtGrid");
+
+function renderDistricts(list){
+  grid.innerHTML = "";
+  list.forEach(d => {
+    const button = document.createElement("button");
+    button.className = "district-card";
+    button.innerHTML = `<span class="emoji">${d[2]}</span>
+      <strong>${d[1]}</strong><small>${d[0]}</small>`;
+    button.onclick = () => openDistrict(d);
+    grid.appendChild(button);
+  });
+  if(!list.length){
+    grid.innerHTML = "<p>यह जिला नहीं मिला। नाम दोबारा खोजें।</p>";
+  }
+}
+
+function filterDistricts(){
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  renderDistricts(districts.filter(d =>
+    d[0].toLowerCase().includes(q) || d[1].toLowerCase().includes(q)
+  ));
+}
+
+function openDistrict(d){
+  document.getElementById("districtTitle").textContent = d[2]+" "+d[1];
+  document.getElementById("districtIntro").textContent =
+    d[1]+" जिले की पर्यटन गाइड। यहाँ दी गई जगहों की जानकारी यात्रा से पहले जाँचें।";
+  const box = document.getElementById("places");
+  box.innerHTML = "";
+  d[3].forEach((place,i) => {
+    const row = document.createElement("div");
+    row.className = "place";
+    const title = document.createElement("strong");
+    title.textContent = (i+1)+". "+place;
+    const p = document.createElement("p");
+    p.textContent = "यात्रा की योजना बनाने से पहले स्थान और रास्ते की जानकारी की पुष्टि करें।";
+    row.append(title,p);
+    box.appendChild(row);
+  });
+  document.getElementById("details").classList.remove("hidden");
+  document.getElementById("details").scrollIntoView({behavior:"smooth"});
+}
+
+function closeDetails(){
+  document.getElementById("details").classList.add("hidden");
+  document.getElementById("districts").scrollIntoView({behavior:"smooth"});
+}
+
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+renderDistricts(districts);
+</script>
+</body>
+</html>
 
