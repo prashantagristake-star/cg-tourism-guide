@@ -247,3 +247,10 @@ renderDistricts(districts);
 </script>
 </body>
 </html>
+<!-- असली विजिटर काउंटर -->
+    <div style="text-align: center; padding: 15px; background: #2c3e50; color: white; margin-top: 30px; border-radius: 8px;">
+        <p>👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
+        <a href="https://www.freecounterstat.com" title="visitor counter code">
+            <img src="https://counter1.optistat.ovh/private/freecounterstat.php?c=9938b82h8d82d43e5e49f87c81726353" border="0" title="visitor counter code" alt="visitor counter code">
+        </a>
+    </div>
