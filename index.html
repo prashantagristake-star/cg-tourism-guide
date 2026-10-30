@@ -256,138 +256,9 @@ renderDistricts(districts);
         </a>
     </div>
 
-function openDistrict(d) {
-  window.currentDistrictData = d;
 
-  document.getElementById("districtTitle").textContent = "📍 " + d[1];
-  document.getElementById("districtIntro").textContent =
-    d[1] === "रायपुर"
-      ? "रायपुर जिले के प्रमुख पर्यटन स्थल"
-      : d[1] + " जिले के पर्यटन स्थल";
-
-  const box = document.getElementById("places");
-  box.innerHTML = "";
-
-  if (d[1] === "रायपुर") {
-    box.innerHTML = `
-      <button class="place-card" onclick="showBudhaTalab()">
-        <img src="images/budha-talab.jpg"
-             alt="विवेकानंद सरोवर"
-             class="place-image">
-        <span class="place-name">विवेकानंद सरोवर (बूढ़ा तालाब)</span>
-        <span class="place-category">प्राकृतिक • ऐतिहासिक • मनोरंजन</span>
-        <span class="place-click">पूरी जानकारी देखने के लिए क्लिक करें →</span>
-      </button>
-    `;
-  } else {
-    (d[3] || []).forEach((place, i) => {
-      const btn = document.createElement("button");
-      btn.className = "place-card";
-      btn.textContent = place;
-      btn.onclick = () => {
-        alert("इस पर्यटन स्थल की जानकारी जल्द जोड़ी जाएगी।");
-      };
-      box.appendChild(btn);
-    });
-  }
-
-  document.getElementById("details").classList.remove("hidden");
-  document.getElementById("details").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
-function showBudhaTalab() {
-  const box = document.getElementById("places");
-
-  box.innerHTML = `
-    <button class="back-btn"
-      onclick="openDistrict(window.currentDistrictData)">
-      ← रायपुर जिले पर वापस जाएँ
-    </button>
-
-    <div class="tourism-detail">
-
-      <img src="images/budha-talab.jpg"
-           alt="विवेकानंद सरोवर बूढ़ा तालाब"
-           class="detail-image">
-
-      <h2>विवेकानंद सरोवर (बूढ़ा तालाब)</h2>
-
-      <p><b>जिला:</b> रायपुर, छत्तीसगढ़</p>
-      <p><b>श्रेणी:</b> प्राकृतिक, ऐतिहासिक एवं मनोरंजन</p>
-
-      <h3>📖 परिचय</h3>
-      <p>
-        विवेकानंद सरोवर रायपुर शहर का प्रसिद्ध तालाब है।
-        इसे बूढ़ा तालाब के नाम से भी जाना जाता है।
-        यह शहर के प्रमुख घूमने-फिरने वाले स्थानों में शामिल है।
-      </p>
-
-      <h3>📍 स्थान और दूरी</h3>
-      <p>
-        यह रायपुर शहर के मध्य क्षेत्र में स्थित है।
-        रेलवे स्टेशन और अन्य प्रमुख स्थानों से सड़क मार्ग
-        द्वारा पहुँचा जा सकता है। दूरी अपने शुरुआती स्थान
-        के अनुसार अलग-अलग होगी।
-      </p>
-
-      <h3>🚌 परिवहन</h3>
-      <p>
-        यहाँ सड़क मार्ग से ऑटो, टैक्सी और स्थानीय परिवहन
-        के माध्यम से पहुँचा जा सकता है।
-      </p>
-
-      <h3>🌤️ घूमने का सही समय</h3>
-      <p>
-        सामान्यतः अक्टूबर से मार्च का समय घूमने के लिए
-        सुविधाजनक माना जाता है। जाने से पहले मौसम जाँच लें।
-      </p>
-
-      <h3>⭐ प्रमुख आकर्षण</h3>
-      <ul>
-        <li>तालाब का सुंदर वातावरण</li>
-        <li>स्वामी विवेकानंद की विशाल प्रतिमा</li>
-        <li>आसपास का शहरी क्षेत्र</li>
-        <li>घूमने और समय बिताने की जगह</li>
-      </ul>
-
-      <h3>🍲 स्थानीय खानपान</h3>
-      <p>
-        आसपास के बाजारों में स्थानीय और भारतीय स्ट्रीट फूड
-        मिल सकता है। उपलब्धता दुकान के अनुसार बदलती है।
-      </p>
-
-      <h3>🌱 पर्यावरण संदेश</h3>
-      <p>
-        तालाब में कचरा न डालें, प्लास्टिक का उपयोग कम करें
-        और जल स्रोत को स्वच्छ रखने में सहयोग करें।
-      </p>
-
-      <h3>💡 यात्रा सुझाव</h3>
-      <ul>
-        <li>जाने से पहले स्थानीय सुविधाओं और समय की जानकारी लें।</li>
-        <li>तालाब के आसपास सावधानी रखें।</li>
-        <li>कचरा निर्धारित स्थान पर ही डालें।</li>
-      </ul>
-
-      <a class="maplink"
-         href="https://www.google.com/maps/search/?api=1&query=Vivekananda+Sarovar+Raipur"
-         target="_blank">
-         📍 Google Maps पर रास्ता देखें
-      </a>
-
-      <p class="source-note">
-        नोट: दूरी, प्रवेश शुल्क, समय और सुविधाओं की जानकारी
-        प्रकाशित करने से पहले स्थानीय या आधिकारिक स्रोत से जाँचें।
-      </p>
-
-    </div>
-  `;
-}
-place-card {
-  display: flex;
-  flex-direction: column;
+.place-card {
+  display: block;
   width: 100%;
   padding: 12px;
   margin: 12px 0;
@@ -396,122 +267,195 @@ place-card {
   border-radius: 14px;
   text-align: left;
   cursor: pointer;
-  gap: 9px;
-  box-shadow: 0 3px 10px #00000012;
 }
 
-.place-image {
+.place-card img {
   width: 100%;
   height: 190px;
   object-fit: cover;
   border-radius: 10px;
 }
 
-.place-name {
-  font-size: 19px;
-  font-weight: bold;
-  color: #174b32;
+.place-card h3 {
+  color: #17633e;
 }
 
-.place-category,
-.place-click {
-  font-size: 14px;
-  color: #555;
-}
-
-.place-click {
+.place-card span {
   color: #087b45;
   font-weight: bold;
-}
-
-.detail-image {
-  width: 100%;
-  max-height: 280px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.tourism-detail {
-  padding: 12px;
-  line-height: 1.7;
-}
-
-.tourism-detail h3 {
-  color: #17633e;
-  margin-top: 22px;
 }
 
 .back-btn {
   padding: 10px 15px;
   margin: 10px 0;
-  border: none;
-  border-radius: 8px;
   background: #17633e;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.source-note {
-  font-size: 13px;
-  color: #666;
+<script>
+
+window.currentDistrictData = null;
+
+function openDistrict(d) {
+
+  window.currentDistrictData = d;
+
+  document.getElementById("districtTitle").textContent =
+    "📍 " + d[1];
+
+  document.getElementById("districtIntro").textContent =
+    d[1] + " जिले के प्रमुख पर्यटन स्थल नीचे देखें।";
+
+  const box = document.getElementById("places");
+  box.innerHTML = "";
+
+  if (d[1] === "रायपुर") {
+
+    const places = [
+      {
+        name: "विवेकानंद सरोवर (बूढ़ा तालाब)",
+        category: "प्राकृतिक, ऐतिहासिक एवं मनोरंजन",
+        image: "images/budha-talab.jpg"
+      }
+    ];
+
+    places.forEach((place) => {
+
+      const card = document.createElement("button");
+      card.className = "place-card";
+
+      card.innerHTML = `
+        <img src="${place.image}" alt="${place.name}">
+        <h3>${place.name}</h3>
+        <p>${place.category}</p>
+        <span>पूरी जानकारी देखें →</span>
+      `;
+
+      card.onclick = () => openPlace(place.name);
+      box.appendChild(card);
+
+    });
+
+  } else {
+
+    (d[3] || []).forEach((place) => {
+
+      const card = document.createElement("button");
+      card.className = "place-card";
+      card.textContent = place + " →";
+
+      card.onclick = () => openPlace(place);
+      box.appendChild(card);
+
+    });
+
+  }
+
+  document.getElementById("details").classList.remove("hidden");
+
+  document.getElementById("details").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 
-<script>
-  // जिलों और उनके स्थानों की नई सूची (डेटा स्ट्रक्चर)
-  const districts = [
-    {
-      name: "Balod",
-      places: [
-        { name: "सिपाहियों मंदिर एवं जलाशय", details: "सिपाहियों मंदिर एक ऐतिहासिक और धार्मिक स्थल है।" },
-        { name: "तांदुला जलाशय", details: "तांदुला जलाशय एक प्रमुख जल स्रोत और पर्यटन स्थल है।" }
-      ]
-    },
-    {
-      name: "Baloda Bazar",
-      places: [
-        { name: "बलोदाबाजार अमरगुफा", details: "अमरगुफा एक प्राचीन और दर्शनीय गुफा है।" },
-        { name: "तुरतुरिया", details: "तुरतुरिया धार्मिक और प्राकृतिक रूप से बहुत प्रसिद्ध है।" }
-      ]
-    },
-    {
-      name: "Bastar",
-      places: [
-        { name: "चित्रकोट जलप्रपात", details: "चित्रकोट जलप्रपात भारत का सबसे चौड़ा जलप्रपात है।" },
-        { name: "दलपत सागर", details: "दलपत सागर बस्तर की ऐतिहासिक और सांस्कृतिक धरोहर है।" }
-      ]
-    }
-    // इसी तरह आप बाकी जिलों और उनके स्थानों को यहाँ जोड़ सकते हैं
-  ];
 
-  // जिले और स्थान दिखाने के लिए फ़ंक्शन
-  function openDistrict(districtName) {
-    const detailsContainer = document.getElementById("district-details");
-    if (!detailsContainer) return;
+function openPlace(placeName) {
 
-    const district = districts.find(d => d.name === districtName);
-    if (!district) {
-      detailsContainer.innerHTML = "<p>जानकारी उपलब्ध नहीं है।</p>";
-      return;
-    }
+  const box = document.getElementById("places");
 
-    let html = <h3>${district.name} के प्रमुख स्थान:</h3><ul>;
-    district.places.forEach((place, index) => {
-      html += <li><button onclick="showPlaceDetails('${districtName}', ${index})">${place.name}</button></li>;
-    });
-    html += </ul><div id="place-info"></div>;
-    
-    detailsContainer.innerHTML = html;
+  if (placeName === "विवेकानंद सरोवर (बूढ़ा तालाब)") {
+
+    box.innerHTML = `
+
+      <button class="back-btn"
+      onclick="openDistrict(window.currentDistrictData)">
+      ← वापस रायपुर जिले पर जाएँ
+      </button>
+
+      <article class="place">
+
+        <img src="images/budha-talab.jpg"
+        alt="विवेकानंद सरोवर बूढ़ा तालाब रायपुर"
+        style="width:100%;max-height:300px;object-fit:cover;border-radius:14px">
+
+        <h2>विवेकानंद सरोवर (बूढ़ा तालाब)</h2>
+
+        <p><b>श्रेणी:</b> प्राकृतिक, ऐतिहासिक एवं मनोरंजन</p>
+        <p><b>स्थान:</b> रायपुर शहर, छत्तीसगढ़</p>
+
+        <h3>📖 इतिहास और परिचय</h3>
+        <p>यह रायपुर का प्रसिद्ध ऐतिहासिक तालाब है।
+        इसे बूढ़ा तालाब के नाम से भी जाना जाता है।</p>
+
+        <h3>📍 दूरी और परिवहन</h3>
+        <p>यह रायपुर शहर के मध्य क्षेत्र में स्थित है।
+        सड़क मार्ग से ऑटो, ई-रिक्शा, सिटी बस या कैब
+        द्वारा पहुँचा जा सकता है।</p>
+
+        <h3>🌤️ घूमने का सही समय</h3>
+        <p>अक्टूबर से मार्च सामान्यतः घूमने के लिए
+        अनुकूल मौसम माना जाता है।</p>
+
+        <h3>⭐ प्रमुख आकर्षण</h3>
+        <p>सरोवर, स्वामी विवेकानंद की प्रतिमा और
+        आसपास का शहरी परिवेश।</p>
+
+        <h3>🍲 स्थानीय खानपान</h3>
+        <p>आसपास के बाजारों में स्थानीय एवं भारतीय
+        स्ट्रीट फूड मिल सकता है।</p>
+
+        <h3>🌱 पर्यावरण संदेश</h3>
+        <p>तालाब में कचरा न डालें, प्लास्टिक का उपयोग
+        कम करें और जलस्रोत को स्वच्छ रखें।</p>
+
+        <h3>💡 यात्रा सुझाव</h3>
+        <p>बोटिंग या अन्य सुविधाओं, प्रवेश समय और शुल्क
+        की जानकारी जाने से पहले जाँचें।</p>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Vivekananda+Sarovar+Raipur"
+        target="_blank" rel="noopener" class="maplink">
+        📍 Google Maps पर स्थान देखें
+        </a>
+
+      </article>
+    `;
+
+  } else {
+
+    box.innerHTML = `
+      <button class="back-btn"
+      onclick="openDistrict(window.currentDistrictData)">
+      ← वापस जिले पर जाएँ
+      </button>
+      <h2>${placeName}</h2>
+      <p>इस पर्यटन स्थल की विस्तृत जानकारी जल्द जोड़ी जाएगी।</p>
+    `;
+
   }
 
-  // किसी विशिष्ट स्थान की जानकारी दिखाने के लिए फ़ंक्शन
-  function showPlaceDetails(districtName, placeIndex) {
-    const district = districts.find(d => d.name === districtName);
-    if (!district) return;
+  box.scrollIntoView({ behavior: "smooth" });
 
-    const place = district.places[placeIndex];
-    const placeInfoContainer = document.getElementById("place-info");
-    if (placeInfoContainer) {
-      placeInfoContainer.innerHTML = <h4>${place.name}</h4><p>${place.details}</p>;
-    }
-  }
+}
+
 </script>
+
+
+<head>
+  <style>
+    /* पूरा CSS */
+  </style>
+</head>
+
+<body>
+
+  <!-- तुम्हारा पूरा HTML -->
+
+  <script>
+    // पूरा JavaScript
+  </script>
+
+</body>
+</html>
