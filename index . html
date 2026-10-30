@@ -248,6 +248,87 @@ renderDistricts(districts);
 </body>
 </html>
 
+function openDistrict(d){
+
+  document.getElementById("districtTitle").textContent =
+    "🌊 " + d[1];
+
+  document.getElementById("districtIntro").textContent =
+    "रायपुर शहर का प्रसिद्ध विवेकानंद सरोवर, जिसे बूढ़ा तालाब भी कहा जाता है।";
+
+  const box = document.getElementById("places");
+  box.innerHTML = "";
+
+  if(d[1] === "रायपुर") {
+
+    box.innerHTML = `
+      <article class="place">
+
+        <img src="images/budha-talab.jpg"
+        alt="विवेकानंद सरोवर बूढ़ा तालाब रायपुर"
+        style="width:100%;max-height:300px;object-fit:cover;border-radius:14px">
+
+        <h3>विवेकानंद सरोवर (बूढ़ा तालाब)</h3>
+
+        <p><b>श्रेणी:</b> प्राकृतिक, ऐतिहासिक एवं मनोरंजन</p>
+
+        <p><b>स्थान:</b> रायपुर शहर, छत्तीसगढ़</p>
+
+        <p><b>इतिहास:</b> यह रायपुर का प्रसिद्ध ऐतिहासिक तालाब है।
+        इसे बूढ़ा तालाब के नाम से भी जाना जाता है।</p>
+
+        <p><b>रायपुर के प्रमुख चौराहों से दूरी:</b>
+        लगभग 2–3 किमी (मार्ग के अनुसार पुष्टि करें)।</p>
+
+        <p><b>परिवहन:</b> सड़क मार्ग से ऑटो, ई-रिक्शा,
+        सिटी बस या कैब द्वारा पहुँचा जा सकता है।</p>
+
+        <p><b>घूमने का समय:</b> अक्टूबर से मार्च
+        सामान्यतः घूमने के लिए अनुकूल मौसम है।</p>
+
+        <p><b>प्रमुख आकर्षण:</b> सरोवर, स्वामी विवेकानंद
+        की प्रतिमा और आसपास का शहरी परिवेश।</p>
+
+        <p><b>स्थानीय खानपान:</b> आसपास के बाजारों में
+        स्थानीय एवं भारतीय स्ट्रीट फूड मिल सकता है।
+        उपलब्धता की पुष्टि करें।</p>
+
+        <p><b>पर्यावरण संदेश:</b> तालाब में कचरा न डालें,
+        प्लास्टिक का उपयोग कम करें और जलस्रोत को स्वच्छ रखें।</p>
+
+        <p><b>यात्रा सुझाव:</b> बोटिंग या अन्य सुविधाओं,
+        प्रवेश समय और शुल्क की जानकारी जाने से पहले जाँचें।</p>
+
+        <p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Vivekananda+Sarovar+Raipur"
+          target="_blank" rel="noopener" class="maplink">
+          📍 Google Maps पर स्थान देखें
+          </a>
+        </p>
+
+      </article>
+    `;
+
+  } else {
+
+    d[3].forEach((place,i) => {
+      const row = document.createElement("div");
+      row.className = "place";
+
+      const title = document.createElement("strong");
+      title.textContent = (i+1) + ". " + place;
+
+      row.appendChild(title);
+      box.appendChild(row);
+    });
+
+  }
+
+  document.getElementById("details").classList.remove("hidden");
+  document.getElementById("details").scrollIntoView({
+    behavior:"smooth"
+  });
+}
   <!-- असली विजिटर काउंटर -->
     <div style="text-align: center; padding: 15px; background: #2c3e50; color: white; margin-top: 30px; border-radius: 8px;">
         <p>👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
