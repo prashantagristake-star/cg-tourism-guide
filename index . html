@@ -536,3 +536,65 @@ place-card {
   font-size: 13px;
   color: #666;
 }
+
+<script>
+  // जिलों और उनके स्थानों की नई सूची (डेटा स्ट्रक्चर)
+  const districts = [
+    {
+      name: "Balod",
+      places: [
+        { name: "सिपाहियों मंदिर एवं जलाशय", details: "सिपाहियों मंदिर एक ऐतिहासिक और धार्मिक स्थल है।" },
+        { name: "तांदुला जलाशय", details: "तांदुला जलाशय एक प्रमुख जल स्रोत और पर्यटन स्थल है।" }
+      ]
+    },
+    {
+      name: "Baloda Bazar",
+      places: [
+        { name: "बलोदाबाजार अमरगुफा", details: "अमरगुफा एक प्राचीन और दर्शनीय गुफा है।" },
+        { name: "तुरतुरिया", details: "तुरतुरिया धार्मिक और प्राकृतिक रूप से बहुत प्रसिद्ध है।" }
+      ]
+    },
+    {
+      name: "Bastar",
+      places: [
+        { name: "चित्रकोट जलप्रपात", details: "चित्रकोट जलप्रपात भारत का सबसे चौड़ा जलप्रपात है।" },
+        { name: "दलपत सागर", details: "दलपत सागर बस्तर की ऐतिहासिक और सांस्कृतिक धरोहर है।" }
+      ]
+    }
+    // इसी तरह आप बाकी जिलों और उनके स्थानों को यहाँ जोड़ सकते हैं
+  ];
+
+  // जिले और स्थान दिखाने के लिए फ़ंक्शन
+  function openDistrict(districtName) {
+    const detailsContainer = document.getElementById("district-details");
+    if (!detailsContainer) return;
+
+    const district = districts.find(d => d.name === districtName);
+    if (!district) {
+      detailsContainer.innerHTML = "<p>जानकारी उपलब्ध नहीं है।</p>";
+      return;
+    }
+
+    let html = <h3>${district.name} के प्रमुख स्थान:</h3><ul>;
+    district.places.forEach((place, index) => {
+      html += <li><button onclick="showPlaceDetails('${districtName}', ${index})">${place.name}</button></li>;
+    });
+    html += </ul><div id="place-info"></div>;
+    
+    detailsContainer.innerHTML = html;
+  }
+
+  // किसी विशिष्ट स्थान की जानकारी दिखाने के लिए फ़ंक्शन
+  function showPlaceDetails(districtName, placeIndex) {
+    const district = districts.find(d => d.name === districtName);
+    if (!district) return;
+
+    const place = district.places[placeIndex];
+    const placeInfoContainer = document.getElementById("place-info");
+    if (placeInfoContainer) {
+      placeInfoContainer.innerHTML = <h4>${place.name}</h4><p>${place.details}</p>;
+    }
+  }
+</script>
+
+इसे कॉपी करके अपने कोड में लगा लें, फिर जिले और उसके अंदर के स्थानों के बटन सही से काम करने लगेंगे!
