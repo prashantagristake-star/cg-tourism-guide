@@ -256,84 +256,202 @@ renderDistricts(districts);
         </a>
     </div>
 
-function openDistrict(d){
+function openDistrict(d) {
+  window.currentDistrictData = d;
 
-  document.getElementById("districtTitle").textContent =
-    "🌊 " + d[1];
-
+  document.getElementById("districtTitle").textContent = "📍 " + d[1];
   document.getElementById("districtIntro").textContent =
-    "रायपुर शहर का प्रसिद्ध विवेकानंद सरोवर, जिसे बूढ़ा तालाब भी कहा जाता है।";
+    d[1] === "रायपुर"
+      ? "रायपुर जिले के प्रमुख पर्यटन स्थल"
+      : d[1] + " जिले के पर्यटन स्थल";
 
   const box = document.getElementById("places");
   box.innerHTML = "";
 
-  if(d[1] === "रायपुर") {
-
+  if (d[1] === "रायपुर") {
     box.innerHTML = `
-      <article class="place">
-
+      <button class="place-card" onclick="showBudhaTalab()">
         <img src="images/budha-talab.jpg"
-        alt="विवेकानंद सरोवर बूढ़ा तालाब रायपुर"
-        style="width:100%;max-height:300px;object-fit:cover;border-radius:14px">
-
-        <h3>विवेकानंद सरोवर (बूढ़ा तालाब)</h3>
-
-        <p><b>श्रेणी:</b> प्राकृतिक, ऐतिहासिक एवं मनोरंजन</p>
-
-        <p><b>स्थान:</b> रायपुर शहर, छत्तीसगढ़</p>
-
-        <p><b>इतिहास:</b> यह रायपुर का प्रसिद्ध ऐतिहासिक तालाब है।
-        इसे बूढ़ा तालाब के नाम से भी जाना जाता है।</p>
-
-        <p><b>रायपुर के प्रमुख चौराहों से दूरी:</b>
-        लगभग 2–3 किमी (मार्ग के अनुसार पुष्टि करें)।</p>
-
-        <p><b>परिवहन:</b> सड़क मार्ग से ऑटो, ई-रिक्शा,
-        सिटी बस या कैब द्वारा पहुँचा जा सकता है।</p>
-
-        <p><b>घूमने का समय:</b> अक्टूबर से मार्च
-        सामान्यतः घूमने के लिए अनुकूल मौसम है।</p>
-
-        <p><b>प्रमुख आकर्षण:</b> सरोवर, स्वामी विवेकानंद
-        की प्रतिमा और आसपास का शहरी परिवेश।</p>
-
-        <p><b>स्थानीय खानपान:</b> आसपास के बाजारों में
-        स्थानीय एवं भारतीय स्ट्रीट फूड मिल सकता है।
-        उपलब्धता की पुष्टि करें।</p>
-
-        <p><b>पर्यावरण संदेश:</b> तालाब में कचरा न डालें,
-        प्लास्टिक का उपयोग कम करें और जलस्रोत को स्वच्छ रखें।</p>
-
-        <p><b>यात्रा सुझाव:</b> बोटिंग या अन्य सुविधाओं,
-        प्रवेश समय और शुल्क की जानकारी जाने से पहले जाँचें।</p>
-
-        <p>
-          <a href="https://www.google.com/maps/search/?api=1&query=Vivekananda+Sarovar+Raipur"
-          target="_blank" rel="noopener" class="maplink">
-          📍 Google Maps पर स्थान देखें
-          </a>
-        </p>
-
-      </article>
+             alt="विवेकानंद सरोवर"
+             class="place-image">
+        <span class="place-name">विवेकानंद सरोवर (बूढ़ा तालाब)</span>
+        <span class="place-category">प्राकृतिक • ऐतिहासिक • मनोरंजन</span>
+        <span class="place-click">पूरी जानकारी देखने के लिए क्लिक करें →</span>
+      </button>
     `;
-
   } else {
-
-    d[3].forEach((place,i) => {
-      const row = document.createElement("div");
-      row.className = "place";
-
-      const title = document.createElement("strong");
-      title.textContent = (i+1) + ". " + place;
-
-      row.appendChild(title);
-      box.appendChild(row);
+    (d[3] || []).forEach((place, i) => {
+      const btn = document.createElement("button");
+      btn.className = "place-card";
+      btn.textContent = place;
+      btn.onclick = () => {
+        alert("इस पर्यटन स्थल की जानकारी जल्द जोड़ी जाएगी।");
+      };
+      box.appendChild(btn);
     });
-
   }
 
   document.getElementById("details").classList.remove("hidden");
   document.getElementById("details").scrollIntoView({
-    behavior:"smooth"
+    behavior: "smooth"
   });
+}
+
+function showBudhaTalab() {
+  const box = document.getElementById("places");
+
+  box.innerHTML = `
+    <button class="back-btn"
+      onclick="openDistrict(window.currentDistrictData)">
+      ← रायपुर जिले पर वापस जाएँ
+    </button>
+
+    <div class="tourism-detail">
+
+      <img src="images/budha-talab.jpg"
+           alt="विवेकानंद सरोवर बूढ़ा तालाब"
+           class="detail-image">
+
+      <h2>विवेकानंद सरोवर (बूढ़ा तालाब)</h2>
+
+      <p><b>जिला:</b> रायपुर, छत्तीसगढ़</p>
+      <p><b>श्रेणी:</b> प्राकृतिक, ऐतिहासिक एवं मनोरंजन</p>
+
+      <h3>📖 परिचय</h3>
+      <p>
+        विवेकानंद सरोवर रायपुर शहर का प्रसिद्ध तालाब है।
+        इसे बूढ़ा तालाब के नाम से भी जाना जाता है।
+        यह शहर के प्रमुख घूमने-फिरने वाले स्थानों में शामिल है।
+      </p>
+
+      <h3>📍 स्थान और दूरी</h3>
+      <p>
+        यह रायपुर शहर के मध्य क्षेत्र में स्थित है।
+        रेलवे स्टेशन और अन्य प्रमुख स्थानों से सड़क मार्ग
+        द्वारा पहुँचा जा सकता है। दूरी अपने शुरुआती स्थान
+        के अनुसार अलग-अलग होगी।
+      </p>
+
+      <h3>🚌 परिवहन</h3>
+      <p>
+        यहाँ सड़क मार्ग से ऑटो, टैक्सी और स्थानीय परिवहन
+        के माध्यम से पहुँचा जा सकता है।
+      </p>
+
+      <h3>🌤️ घूमने का सही समय</h3>
+      <p>
+        सामान्यतः अक्टूबर से मार्च का समय घूमने के लिए
+        सुविधाजनक माना जाता है। जाने से पहले मौसम जाँच लें।
+      </p>
+
+      <h3>⭐ प्रमुख आकर्षण</h3>
+      <ul>
+        <li>तालाब का सुंदर वातावरण</li>
+        <li>स्वामी विवेकानंद की विशाल प्रतिमा</li>
+        <li>आसपास का शहरी क्षेत्र</li>
+        <li>घूमने और समय बिताने की जगह</li>
+      </ul>
+
+      <h3>🍲 स्थानीय खानपान</h3>
+      <p>
+        आसपास के बाजारों में स्थानीय और भारतीय स्ट्रीट फूड
+        मिल सकता है। उपलब्धता दुकान के अनुसार बदलती है।
+      </p>
+
+      <h3>🌱 पर्यावरण संदेश</h3>
+      <p>
+        तालाब में कचरा न डालें, प्लास्टिक का उपयोग कम करें
+        और जल स्रोत को स्वच्छ रखने में सहयोग करें।
+      </p>
+
+      <h3>💡 यात्रा सुझाव</h3>
+      <ul>
+        <li>जाने से पहले स्थानीय सुविधाओं और समय की जानकारी लें।</li>
+        <li>तालाब के आसपास सावधानी रखें।</li>
+        <li>कचरा निर्धारित स्थान पर ही डालें।</li>
+      </ul>
+
+      <a class="maplink"
+         href="https://www.google.com/maps/search/?api=1&query=Vivekananda+Sarovar+Raipur"
+         target="_blank">
+         📍 Google Maps पर रास्ता देखें
+      </a>
+
+      <p class="source-note">
+        नोट: दूरी, प्रवेश शुल्क, समय और सुविधाओं की जानकारी
+        प्रकाशित करने से पहले स्थानीय या आधिकारिक स्रोत से जाँचें।
+      </p>
+
+    </div>
+  `;
+}
+place-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  text-align: left;
+  cursor: pointer;
+  gap: 9px;
+  box-shadow: 0 3px 10px #00000012;
+}
+
+.place-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.place-name {
+  font-size: 19px;
+  font-weight: bold;
+  color: #174b32;
+}
+
+.place-category,
+.place-click {
+  font-size: 14px;
+  color: #555;
+}
+
+.place-click {
+  color: #087b45;
+  font-weight: bold;
+}
+
+.detail-image {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.tourism-detail {
+  padding: 12px;
+  line-height: 1.7;
+}
+
+.tourism-detail h3 {
+  color: #17633e;
+  margin-top: 22px;
+}
+
+.back-btn {
+  padding: 10px 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: #17633e;
+  color: white;
+  cursor: pointer;
+}
+
+.source-note {
+  font-size: 13px;
+  color: #666;
 }
