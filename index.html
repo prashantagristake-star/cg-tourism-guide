@@ -299,10 +299,111 @@ renderDistricts(districts);
             <img src="https://counter1.optistat.ovh/private/freecounterstat.php?c=9938b82h8d82d43e5e49f87c81726353" border="0" title="visitor counter code" alt="visitor counter code">
         </a>
     </div>
+.place-card {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.place-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.place-card h3 {
+  color: #17633e;
+}
+
+.place-card span {
+  color: #087b45;
+  font-weight: bold;
+}
+
+.back-btn {
+  padding: 10px 15px;
+  margin: 10px 0;
+  background: #17633e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+<script>
+
+window.currentDistrictData = null;
+
+function openDistrict(d) {
+
+  window.currentDistrictData = d;
+
+  document.getElementById("districtTitle").textContent =
+    "📍 " + d[1];
+
+  document.getElementById("districtIntro").textContent =
+    d[1] + " जिले के प्रमुख पर्यटन स्थल नीचे देखें।";
+
+  const box = document.getElementById("places");
+  box.innerHTML = "";
+
+  if (d[1] === "रायपुर") {
+
+    const places = [
+      {
+        name: "विवेकानंद सरोवर (बूढ़ा तालाब)",
+        category: "प्राकृतिक, ऐतिहासिक एवं मनोरंजन",
+        image: "images/budha-talab.jpg"
+      }
+    ];
+
+    places.forEach((place) => {
+
+      const card = document.createElement("button");
+      card.className = "place-card";
+
+      card.innerHTML = `
+        <img src="${place.image}" alt="${place.name}">
+        <h3>${place.name}</h3>
+        <p>${place.category}</p>
+        <span>पूरी जानकारी देखें →</span>
+      `;
+
+      card.onclick = () => openPlace(place.name);
+      box.appendChild(card);
+
+    });
+
+  } else {
+
+    (d[3] || []).forEach((place) => {
+
+      const card = document.createElement("button");
+      card.className = "place-card";
+      card.textContent = place + " →";
+
+      card.onclick = () => openPlace(place);
+      box.appendChild(card);
+
+    });
+
+  }
+
+  document.getElementById("details").classList.remove("hidden");
+
+  document.getElementById("details").scrollIntoView({
+    behavior: "smooth"
+  });
+}
 
 
-const divisions = [
-  {
     name: "सरगुजा संभाग",
     englishName: "Surguja Division",
 
