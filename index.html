@@ -8,125 +8,235 @@
 <title>CG Tourism Guide | चलो छत्तीसगढ़ घूमते हैं</title>
 
 <style>
-/* छत्तीसगढ़ स्थापना दिवस स्पेशल बैनर स्टाइल */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, "Noto Sans Devanagari", sans-serif;
+  background: #f5f7f0;
+  color: #20352b;
+  line-height: 1.7;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+
 .cg-fest-banner {
+  display: none;
   background: linear-gradient(135deg, #102f28, #27634b);
   color: #fff;
   text-align: center;
   padding: 14px 20px;
   font-size: 15px;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
   position: relative;
   z-index: 10;
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
   border-bottom: 3px solid #d8e9ad;
 }
-.cg-fest-banner span {
+.cg-fest-banner span { color: #d8e9ad; font-size: 17px; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #163c32;
+  color: white;
+  padding: 12px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.logo { font-size: 19px; font-weight: bold; }
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+nav button {
+  background: transparent;
+  color: white;
+  border: 1px solid #739184;
+  border-radius: 20px;
+  padding: 6px 12px;
+}
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px 20px;
+  color: white;
+  background:
+    radial-gradient(ellipse at 75% 15%, #b5cb81 0, transparent 32%),
+    linear-gradient(145deg, #102f28, #27634b 60%, #71915c);
+}
+.hero-content { max-width: 750px; }
+.tag { color: #e1edb8; letter-spacing: 2px; font-size: 13px; }
+h1 { font-size: clamp(36px, 8vw, 64px); line-height: 1.2; margin: 18px 0; }
+.hero p { font-size: 18px; color: #e5efe8; }
+.btn {
+  border: 0;
+  border-radius: 30px;
+  padding: 12px 22px;
+  font-weight: bold;
+  background: #d8e9ad;
+  color: #183d30;
+  margin: 7px;
+}
+.btn-outline { background: transparent; border: 1px solid white; color: white; }
+
+section { padding: 55px 5%; scroll-margin-top: 70px; }
+.section-title {
+  text-align: center;
+  font-size: clamp(25px, 5vw, 36px);
+  margin: 0 0 10px;
+}
+.subtitle {
+  text-align: center;
+  color: #64776b;
+  margin: 0 auto 28px;
+  max-width: 650px;
+}
+.about { background: #fff; }
+.feature-grid, .district-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 14px;
+}
+.feature { background: #f0f5e9; border-radius: 16px; padding: 20px; text-align: center; }
+.feature span { font-size: 30px; }
+.feature h3 { margin: 8px 0 3px; }
+.feature p { font-size: 14px; margin: 0; color: #617268; }
+.callout {
+  max-width: 750px;
+  margin: 28px auto 0;
+  background: #eaf1df;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+.district-section { background: #edf2e7; }
+.search {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 24px;
+  padding: 14px 17px;
+  border: 1px solid #c8d5c7;
+  border-radius: 12px;
+  background: white;
+  outline-color: #397859;
+}
+.district-card {
+  background: white;
+  border: 1px solid #e0e8dd;
+  border-radius: 15px;
+  padding: 17px;
+  text-align: left;
+  color: #20352b;
+  box-shadow: 0 3px 10px #1c42200a;
+  transition: transform .2s;
+}
+.district-card:hover { transform: translateY(-3px); }
+.district-card .emoji { font-size: 28px; }
+.district-card strong { display: block; font-size: 16px; }
+.district-card small { color: #68786d; }
+.details {
+  max-width: 800px;
+  margin: 28px auto 0;
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 5px 20px #173b2910;
+}
+.details h3 { font-size: 25px; margin: 0; }
+.place { padding: 13px 0; border-bottom: 1px solid #e4eae1; }
+.place:last-child { border: 0; }
+.place p { margin: 4px 0; color: #657469; }
+.place-button {
+  width: 100%;
+  text-align: left;
+  background: #f1f5e9;
+  color: #20352b;
+  border: 1px solid #dce7d0;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+.place-info {
+  background: #fbfcf8;
+  border-left: 4px solid #397859;
+  padding: 12px;
+  margin: 8px 0 14px;
+  border-radius: 6px;
+}
+.hidden { display: none !important; }
+.back {
+  border: 1px solid #b9c9b8;
+  background: white;
+  border-radius: 25px;
+  padding: 8px 15px;
+  margin-bottom: 16px;
+}
+footer {
+  background: #163c32;
+  color: #e8f0e8;
+  text-align: center;
+  padding: 28px 15px;
+}
+footer p { font-size: 14px; }
+.footer-links {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-links a {
   color: #d8e9ad;
-  font-size: 17px;
-}  
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;
-background:#f5f7f0;color:#20352b;line-height:1.7}
-button,input{font:inherit}
-button{cursor:pointer}
-header{position:sticky;top:0;z-index:5;background:#163c32;
-color:white;padding:12px 5%;display:flex;align-items:center;
-justify-content:space-between;gap:10px}
-.logo{font-size:19px;font-weight:bold}
-nav{display:flex;gap:8px;flex-wrap:wrap}
-nav button{background:transparent;color:white;border:1px solid #739184;
-border-radius:20px;padding:6px 12px}
-.hero{min-height:85vh;display:flex;align-items:center;
-justify-content:center;text-align:center;padding:35px 20px;color:white;
-background:radial-gradient(ellipse at 75% 15%,#b5cb81 0,transparent 32%),
-linear-gradient(145deg,#102f28,#27634b 60%,#71915c)}
-.hero-content{max-width:750px}
-.tag{color:#e1edb8;letter-spacing:2px;font-size:13px}
-h1{font-size:clamp(36px,8vw,64px);line-height:1.2;margin:18px 0}
-.hero p{font-size:18px;color:#e5efe8}
-.btn{border:0;border-radius:30px;padding:12px 22px;
-font-weight:bold;background:#d8e9ad;color:#183d30;margin:7px}
-.btn-outline{background:transparent;border:1px solid white;color:white}
-section{padding:55px 5%;scroll-margin-top:70px}
-.section-title{text-align:center;font-size:clamp(25px,5vw,36px);
-margin:0 0 10px}
-.subtitle{text-align:center;color:#64776b;margin:0 auto 28px;max-width:650px}
-.about{background:#fff}
-.feature-grid,.district-grid{display:grid;
-grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
-.feature{background:#f0f5e9;border-radius:16px;padding:20px;text-align:center}
-.feature span{font-size:30px}
-.feature h3{margin:8px 0 3px}
-.feature p{font-size:14px;margin:0;color:#617268}
-.callout{max-width:750px;margin:28px auto 0;background:#eaf1df;
-padding:20px;border-radius:15px;text-align:center}
-.district-section{background:#edf2e7}
-.search{display:block;width:100%;max-width:600px;margin:0 auto 24px;
-padding:14px 17px;border:1px solid #c8d5c7;border-radius:12px;
-background:white;outline-color:#397859}
-.district-card{background:white;border:1px solid #e0e8dd;
-border-radius:15px;padding:17px;text-align:left;color:#20352b;
-box-shadow:0 3px 10px #1c42200a;transition:transform .2s}
-.district-card:hover{transform:translateY(-3px)}
-.district-card .emoji{font-size:28px}
-.district-card strong{display:block;font-size:16px}
-.district-card small{color:#68786d}
-.details{max-width:800px;margin:28px auto 0;background:white;
-border-radius:18px;padding:22px;box-shadow:0 5px 20px #173b2910}
-.details h3{font-size:25px;margin:0}
-.place{padding:13px 0;border-bottom:1px solid #e4eae1}
-.place:last-child{border:0}
-.place p{margin:4px 0;color:#657469}
-.hidden{display:none!important}
-.back{border:1px solid #b9c9b8;background:white;border-radius:25px;
-padding:8px 15px;margin-bottom:16px}
-footer{background:#163c32;color:#e8f0e8;text-align:center;padding:28px 15px}
-footer p{font-size:14px}
-@media(max-width:500px){
-  header{padding:10px 4%;flex-wrap:wrap}
-  .logo{font-size:17px}
-  nav button{font-size:12px;padding:5px 9px}
-  section{padding:40px 4%}
-  .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .district-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-  .district-card{padding:12px}
-  .details{padding:16px}
+  text-decoration: none;
+  font-weight: bold;
+}
+.visitor-counter {
+  text-align: center;
+  padding: 12px;
+  background: #102f28;
+  color: white;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+.visitor-counter p { margin: 0 0 5px; font-size: 14px; }
+
+@media (max-width: 500px) {
+  header { padding: 10px 4%; flex-wrap: wrap; }
+  .logo { font-size: 17px; }
+  nav button { font-size: 12px; padding: 5px 9px; }
+  section { padding: 40px 4%; }
+  .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .district-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .district-card { padding: 12px; }
+  .details { padding: 16px; }
 }
 </style>
 </head>
 
 <body>
-  <!-- छत्तीसगढ़ स्थापना दिवस 7-दिवसीय ऑटो बैनर -->
-  <div id="cgFestBanner" class="cg-fest-banner" style="display: none;">
-    <span>🌾 छत्तीसगढ़ महतारी की जय!</span> 
-    छत्तीसगढ़ राज्य स्थापना के गौरवशाली 26 वर्ष पूर्ण होने पर समस्त प्रदेशवासियों को हार्दिक बधाई एवं शुभकामनाएँ! 🌿
-  </div>
+<div id="cgFestBanner" class="cg-fest-banner" role="status" aria-live="polite">
+  <span>🌾 छत्तीसगढ़ महतारी की जय!</span>
+  <span id="cgAnniversary"></span>
+</div>
 
-  <script>
-    const today = new Date();
-    const currentMonth = today.getMonth() + 1; // 11 = नवंबर
-    const currentDate = today.getDate();
-
-    if (currentMonth === 11 && currentDate >= 1 && currentDate <= 7) {
-      document.getElementById("cgFestBanner").style.display = "flex";
-    }
-  </script>
-
-  <!-- मुख्य हेडर -->
-  <header>
-    <div class="logo">🌿 CG Tourism Guide</div>
-    <nav>
-      <button onclick="go('home')">Home</button>
-      <button onclick="go('about')">हमारे बारे में</button>
-      <button onclick="go('districts')">जिले देखें</button>
-    </nav>
-  </header>
+<header>
+  <div class="logo">🌿 CG Tourism Guide</div>
+  <nav aria-label="मुख्य नेविगेशन">
+    <button type="button" onclick="go('home')">Home</button>
+    <button type="button" onclick="go('about')">हमारे बारे में</button>
+    <button type="button" onclick="go('districts')">जिले देखें</button>
+  </nav>
+</header>
 
 <main>
 <section class="hero" id="home">
@@ -134,9 +244,9 @@ footer p{font-size:14px}
     <div class="tag">EXPLORE CHHATTISGARH</div>
     <h1>चलो छत्तीसगढ़<br>घूमते हैं! 🌿</h1>
     <p>झरने, जंगल, मंदिर, संस्कृति और अपने छत्तीसगढ़ की खूबसूरती को जानें।</p>
-    <button class="btn" onclick="go('about')">🚪 चलो, सफर शुरू करें</button>
+    <button class="btn" type="button" onclick="go('about')">🚪 चलो, सफर शुरू करें</button>
     <br>
-    <button class="btn btn-outline" onclick="go('districts')">सीधे जिले चुनें ↓</button>
+    <button class="btn btn-outline" type="button" onclick="go('districts')">सीधे जिले चुनें ↓</button>
   </div>
 </section>
 
@@ -156,7 +266,7 @@ footer p{font-size:14px}
     <p>छत्तीसगढ़ के पर्यटन स्थलों की जानकारी लोगों तक पहुँचाना,
     स्थानीय संस्कृति को बढ़ावा देना और प्रकृति के प्रति जिम्मेदारी
     बढ़ाना, ताकि हम घूमने के साथ अपने पर्यावरण की रक्षा भी करें।</p>
-    <button class="btn" onclick="go('districts')">🚪 अब अपना जिला चुनें</button>
+    <button class="btn" type="button" onclick="go('districts')">🚪 अब अपना जिला चुनें</button>
   </div>
 </section>
 
@@ -166,12 +276,12 @@ footer p{font-size:14px}
 
   <input class="search" id="search" type="search"
     placeholder="🔎 जिला खोजें... जैसे Bastar, Raipur, Durg"
-    oninput="filterDistricts()">
+    aria-label="जिला खोजें">
 
   <div class="district-grid" id="districtGrid"></div>
 
   <div class="details hidden" id="details" aria-live="polite">
-    <button class="back" onclick="closeDetails()">← सभी जिलों पर वापस जाएँ</button>
+    <button class="back" type="button" onclick="closeDetails()">← सभी जिलों पर वापस जाएँ</button>
     <h3 id="districtTitle"></h3>
     <p id="districtIntro"></p>
     <h4>घूमने की जगहें</h4>
@@ -187,35 +297,51 @@ footer p{font-size:14px}
 <footer>
   <strong>🌿 CG Tourism Guide</strong>
   <p>अपने छत्तीसगढ़ को जानें, घूमें और उसकी प्रकृति को बचाएँ।</p>
-  <p>यह स्वतंत्र पर्यटन जानकारी परियोजना है, सरकारी वेबसाइट नहीं。</p>
+  <p>यह स्वतंत्र पर्यटन जानकारी परियोजना है, सरकारी वेबसाइट नहीं।</p>
 
-  <!-- सोशल मीडिया और क्रिएटर लिंक्स -->
-  <div style="margin: 15px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-    <a href="https://youtube.com/@growthwithprashant26m?si=U8hvm0eO0cO7hld0" target="_blank" style="color: #d8e9ad; text-decoration: none; font-weight: bold;">
+  <div class="footer-links">
+    <a href="https://youtube.com/@growthwithprashant26m" target="_blank" rel="noopener noreferrer">
       ▶️ YouTube (Growth With Prashant)
     </a>
-    <a href="https://www.instagram.com/growt.hwithprashant?exln=OGpqc214bzh3cDdu" target="_blank" style="color: #d8e9ad; text-decoration: none; font-weight: bold;">
+    <a href="https://www.instagram.com/growt.hwithprashant/" target="_blank" rel="noopener noreferrer">
       📸 Instagram
     </a>
   </div>
 
-  <p style="font-size: 13px; color: #a3c1b1; margin-top: 10px;">
-    Design & Managed by <strong>Growth With Prashant</strong> 🚀
+  <p style="font-size:13px;color:#a3c1b1;margin-top:10px;">
+    Design &amp; Managed by <strong>Growth With Prashant</strong> 🚀
   </p>
-  
-  <!-- विजिटर काउंटर -->
-  <div style="text-align: center; padding: 12px; background: #102f28; color: white; margin-top: 15px; border-radius: 8px;">
-    <p style="margin:0 0 5px 0; font-size:14px;">👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
+
+  <div class="visitor-counter">
+    <p>👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
     <div id="sfcrrn4h56zwwq5g25j69t71z44nbdsz31y"></div>
-    <script type="text/javascript" src="https://counter6.optistats.ovh/private/counter.js?c=rrn4h56zwwq5g25j69t71z44nbdsz31y&down=async" async></script>
+    <script src="https://counter6.optistats.ovh/private/counter.js?c=rrn4h56zwwq5g25j69t71z44nbdsz31y&amp;down=async" async></script>
     <noscript>
-      <a href="https://www.freecounterstat.com" title="free hit counter"><img src="https://counter6.optistats.ovh/private/freecounterstat.php?c=rrn4h56zwwq5g25j69t71z44nbdsz31y" border="0" title="free hit counter" alt="free hit counter"></a>
+      <a href="https://www.freecounterstat.com" title="Free visitor counter">
+        <img src="https://counter6.optistats.ovh/private/freecounterstat.php?c=rrn4h56zwwq5g25j69t71z44nbdsz31y"
+          alt="Visitor counter" loading="lazy">
+      </a>
     </noscript>
   </div>
-  
 </footer>
 
 <script>
+// स्थापना दिवस का बैनर: हर साल 1 से 7 नवंबर तक दिखाई देगा।
+(function showFoundationDayBanner() {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+
+  if (month === 11 && date >= 1 && date <= 7) {
+    const banner = document.getElementById("cgFestBanner");
+    const years = today.getFullYear() - 2000;
+    document.getElementById("cgAnniversary").textContent =
+      `छत्तीसगढ़ राज्य स्थापना के गौरवशाली ${years} वर्ष पूर्ण होने पर समस्त प्रदेशवासियों को हार्दिक बधाई एवं शुभकामनाएँ! 🌿`;
+    banner.style.display = "flex";
+  }
+})();
+
+// जिले: [English नाम, हिंदी नाम, Emoji, पर्यटन स्थलों की सूची]
 const rawDistricts = [
   ["Balod","बालोद","🌾",["सियादेवी मंदिर एवं जलप्रपात","तांदुला जलाशय"]],
   ["Baloda Bazar-Bhatapara","बलौदाबाजार-भाटापारा","🏞️",["बारनवापारा वन्यजीव अभयारण्य","गिरौदपुरी धाम"]],
@@ -252,86 +378,124 @@ const rawDistricts = [
   ["Surguja","सरगुजा","⛰️",["मैनपाट","रामगढ़ की पहाड़ियाँ एवं गुफाएँ","ठिनठिनी पत्थर"]]
 ];
 
+// जिन जगहों की विशेष जानकारी उपलब्ध है, उसे यहाँ रखा गया है।
 const customDetailsMap = {
-  "सियादेवी मंदिर एवं जलप्रपात": { bestMonth: "जुलाई से फरवरी", specialEvent: "महाशिवरात्रि पर मेला", story: "प्राकृतिक हरियाली और झरने के साथ माता सियादेवी का पवित्र मंदिर।" },
-  "तांदुला जलाशय": { bestMonth: "अक्टूबर से मार्च", specialEvent: "नौकायन उत्सव", story: "तांदुला नदी पर बना विशाल जलाशय।" },
-  "बारनवापारा वन्यजीव अभयारण्य": { bestMonth: "नवंबर से अप्रैल", specialEvent: "वन्यजीव सप्ताह", story: "घने जंगलों और वन्यजीवों का प्राकृतिक रहवास।" },
-  "गिरौदपुरी धाम": { bestMonth: "अक्टूबर से मार्च", specialEvent: "फाल्गुनी मेला", story: "बाबा गुरु घासीदास जी की जन्मस्थली एवं सर्वोच्च जैतखाम।" },
-  "तातापानी गर्म जलस्रोत": { bestMonth: "अक्टूबर से फरवरी", specialEvent: "मकर संक्रांति मेला", story: "प्राकृतिक रूप से निकलने वाला औषधीय गर्म जल।" },
-  "चित्रकोट जलप्रपात": { bestMonth: "जुलाई से अक्टूबर", specialEvent: "बस्तर लोक उत्सव", story: "भारत का 'नियाग्रा फॉल' कहा जाने वाला विशाल जलप्रपात।" },
-  "तीरथगढ़ जलप्रपात": { bestMonth: "अगस्त से फरवरी", specialEvent: "प्रकृति पर्यटन", story: "सीढ़ियों की तरह गिरता सुरम्य जलप्रपात।" },
-  "कांगेर घाटी राष्ट्रीय उद्यान": { bestMonth: "नवंबर से मार्च", specialEvent: "पर्यावरण दिवस", story: "कुटुमसर गुफाओं और जैव विविधता से समृद्ध उद्यान।" },
-  "बस्तर की जनजातीय संस्कृति": { bestMonth: "अक्टूबर से मार्च", specialEvent: "बस्तर दशहरा", story: "75 दिवसीय विश्व प्रसिद्ध हस्तशिल्प व लोक संस्कृति।" },
-  "शिवरीनारायण मंदिर": { bestMonth: "जनवरी से मार्च", specialEvent: "माघ पूर्णिमा मेला", story: "महानदी, शिवनाथ व जोंक का संगम और शबरी धाम।" },
+  "सियादेवी मंदिर एवं जलप्रपात": {
+    bestMonth: "जुलाई से फरवरी",
+    specialEvent: "महाशिवरात्रि पर मेला",
+    story: "प्राकृतिक हरियाली और झरने के साथ माता सियादेवी का पवित्र मंदिर।"
+  },
+  "तांदुला जलाशय": {
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "स्थानीय पर्यटन गतिविधियाँ",
+    story: "तांदुला नदी पर बना विशाल जलाशय।"
+  },
+  "बारनवापारा वन्यजीव अभयारण्य": {
+    bestMonth: "नवंबर से अप्रैल",
+    specialEvent: "वन्यजीव सप्ताह के दौरान जागरूकता गतिविधियाँ",
+    story: "घने जंगलों और वन्यजीवों का प्राकृतिक रहवास।"
+  },
+  "गिरौदपुरी धाम": {
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "फाल्गुनी मेला",
+    story: "बाबा गुरु घासीदास जी की जन्मस्थली और जैतखाम के लिए प्रसिद्ध तीर्थ।"
+  },
+  "तातापानी गर्म जलस्रोत": {
+    bestMonth: "अक्टूबर से फरवरी",
+    specialEvent: "मकर संक्रांति के आसपास मेला",
+    story: "प्राकृतिक रूप से निकलने वाले गर्म जल के लिए प्रसिद्ध स्थान।"
+  },
+  "चित्रकोट जलप्रपात": {
+    bestMonth: "जुलाई से अक्टूबर",
+    specialEvent: "स्थानीय पर्यटन और सांस्कृतिक आयोजन",
+    story: "इंद्रावती नदी पर स्थित चौड़े जलप्रपात को उसके विशाल आकार के कारण 'भारत का नियाग्रा' भी कहा जाता है।"
+  },
+  "तीरथगढ़ जलप्रपात": {
+    bestMonth: "अगस्त से फरवरी",
+    specialEvent: "प्रकृति पर्यटन",
+    story: "सीढ़ियों जैसी चट्टानी बनावट पर गिरता सुंदर जलप्रपात।"
+  },
+  "कांगेर घाटी राष्ट्रीय उद्यान": {
+    bestMonth: "नवंबर से मार्च",
+    specialEvent: "प्रकृति एवं वन्यजीव जागरूकता गतिविधियाँ",
+    story: "कुटुमसर गुफाओं और जैव विविधता के लिए प्रसिद्ध राष्ट्रीय उद्यान।"
+  },
+  "बस्तर की जनजातीय संस्कृति": {
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "बस्तर दशहरा",
+    story: "बस्तर की लोक परंपराओं, हस्तशिल्प, नृत्य और जनजातीय संस्कृति की विशेष पहचान।"
+  },
+  "शिवरीनारायण मंदिर": {
+    bestMonth: "जनवरी से मार्च",
+    specialEvent: "माघ पूर्णिमा मेला",
+    story: "महानदी, शिवनाथ और जोंक नदियों के संगम क्षेत्र के पास स्थित प्रसिद्ध धार्मिक स्थल, जिसका संबंध शबरी की लोककथा से भी जोड़ा जाता है।"
+  },
   "प्राचीन बूढ़ा देव मंदिर, धमधा गढ़": {
-    bestMonth: "अक्टूबर से मार्च (सुहाना मौसम और मड़ई मेला)",
-    specialEvent: "वार्षिक पारंपरिक मड़ई मेला",
-    story: "यह गोंडवाना कालीन ऐतिहासिक गढ़ है, जहाँ आदिवासी समाज के आराध्य देव 'बूढ़ा देव' और 'बूढ़ी माई' का प्राचीन मंदिर और किला स्थित है।"
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "स्थानीय पारंपरिक मड़ई मेला",
+    story: "धमधा क्षेत्र की स्थानीय आस्था और ऐतिहासिक पहचान से जुड़ा स्थल।"
   },
   "बूढ़ा देव मंदिर, मरोदा": {
-    bestMonth: "पूरे वर्षभर (विशेषकर हरेली, पोला और छेरछेरा पर्व)",
-    specialEvent: "शीतला माता पूजा और पारंपरिक लोक पर्व उत्सव",
-    story: "भिलाई के बसने से पहले के ग्रामीण इतिहास से जुड़ा यह स्थल शीतला तालाब के किनारे स्थित लोक-आस्था और सुरक्षा का मुख्य केंद्र है।"
+    bestMonth: "पूरे वर्ष; स्थानीय पर्वों के समय विशेष रौनक",
+    specialEvent: "स्थानीय पूजा और लोक पर्व",
+    story: "मरोदा क्षेत्र की लोक-आस्था और स्थानीय परंपराओं से जुड़ा मंदिर।"
   },
   "माँ पाताल भैरवी मंदिर (बर्फानी धाम)": {
-    bestMonth: "अक्टूबर से मार्च (सुहाना मौसम और शरद पूर्णिमा उत्सव)",
-    specialEvent: "शरद पूर्णिमा पर औषधीय खीर प्रसाद वितरण एवं महाशिवरात्रि मेला",
-    story: "बाबा बर्फानी द्वारा 1998 में स्थापित यह मंदिर विश्व की एकमात्र त्रि-स्तरीय संरचना है, जो बाहर से विशाल शिवलिंग जैसी दिखती है और इसमें 12 ज्योतिर्लिंगों के दर्शन होते हैं।"
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "शरद पूर्णिमा और महाशिवरात्रि के आयोजन",
+    story: "राजनांदगांव का प्रसिद्ध धार्मिक स्थल, अपनी विशिष्ट मंदिर संरचना और शिव-भक्ति से जुड़ी पहचान के लिए जाना जाता है।"
   },
   "माता कौशल्या मंदिर (चंद्रखुरी)": {
-    bestMonth: "अक्टूबर से मार्च (विशेषकर रामनवमी और नवरात्रि)",
-    specialEvent: "राम वन गमन पथ उत्सव एवं भव्य रामनवमी मेला",
-    story: "दुनिया का एकमात्र कौशल्या माता मंदिर, जो जलसेन तालाब के बीच स्थित है। यह स्थान प्रभु श्री राम का ननिहाल और प्राचीन कौशल राज्य माना जाता है।"
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "रामनवमी और नवरात्रि",
+    story: "चंद्रखुरी का माता कौशल्या मंदिर भगवान श्रीराम की माता कौशल्या से जुड़ी धार्मिक मान्यता के लिए प्रसिद्ध है।"
   },
   "भांडदेउ जैन मंदिर (आरंग)": {
-    bestMonth: "अक्टूबर से मार्च (सुहाना मौसम)",
-    specialEvent: "वार्षिक जैन तीर्थंकर उत्सव व मड़ई मेला",
-    story: "मंदिरों की नगरी आरंग में स्थित 11वीं-12वीं शताब्दी का प्राचीन जैन मंदिर। यह मंदिर राजा मोरध्वज की लोककथा और अपनी अद्वितीय खजुराहो शैली की नक्काशी के लिए जाना जाता है।"
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "जैन धार्मिक आयोजन",
+    story: "आरंग क्षेत्र की ऐतिहासिक जैन धरोहर और मंदिर स्थापत्य से जुड़ा स्थल।"
   },
   "नगपुरा पार्श्वनाथ जैन मंदिर": {
-    bestMonth: "पूरे वर्षभर (विशेषकर कार्तिक पूर्णिमा)",
-    specialEvent: "भगवान पार्श्वनाथ जन्म कल्याणक व वार्षिक मेला",
-    story: "शिवनाथ नदी तट पर स्थित प्रसिद्ध जैन तीर्थ धाम, जहाँ 1995 में भूगर्भ से प्रकट हुई भगवान पार्श्वनाथ की चमत्कारिक प्रतिमा और प्रसिद्ध अमिय झरा स्थित है।"
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "जैन धार्मिक पर्व और आयोजन",
+    story: "दुर्ग जिले के नगपुरा में स्थित प्रसिद्ध जैन तीर्थस्थल।"
   },
   "धमधा का किला (धमधा गढ़)": {
     bestMonth: "अक्टूबर से फरवरी",
-    specialEvent: "ऐतिहासिक धरोहर पदयात्रा व मड़ई मेला",
-    story: "14वीं शताब्दी का गोंड राजाओं का रक्षा किला, जहाँ मान-सम्मान की रक्षा के लिए हुए 'जल जौहर' की बावड़ी और गुप्त तहखानों के खजाने की रहस्यमयी कहानियाँ जुड़ी हैं।"
+    specialEvent: "स्थानीय सांस्कृतिक आयोजन",
+    story: "धमधा क्षेत्र के पुराने गढ़ और स्थानीय इतिहास से जुड़ा स्थल।"
   },
   "देवरानी-जेठानी मंदिर और रुद्र शिव (तालागांव)": {
-    bestMonth: "अक्टूबर से मार्च (पुरातात्विक खोज के लिए बेस्ट)",
-    specialEvent: "तालागांव संस्कृति मेला व महाशिवरात्रि",
-    story: "मनियारी नदी तट पर 5वीं शताब्दी के ऐतिहासिक मंदिर, जहाँ गर्भगृह में स्थित रुद्र शिव की विश्व प्रसिद्ध रहस्यमयी प्रतिमा है, जिसके अंगों में 11 अलग-अलग जीवों की आकृतियाँ निर्मित हैं।"
+    bestMonth: "अक्टूबर से मार्च",
+    specialEvent: "महाशिवरात्रि के अवसर पर धार्मिक गतिविधियाँ",
+    story: "मनियारी नदी के पास स्थित प्राचीन मंदिर और प्रसिद्ध रुद्र शिव प्रतिमा के लिए तालागांव जाना जाता है।"
   },
   "पुरातात्विक नगरी मल्हार (मां डिडनेश्वरी मंदिर)": {
     bestMonth: "अक्टूबर से मार्च",
-    specialEvent: "नवरात्रि मेला व मल्हार महोत्सव",
-    story: "मौर्य व गुप्त कालीन प्राचीन शहर जहाँ भारत की सबसे पुरानी चतुर्भुजी विष्णु प्रतिमा और पाताल लोक की देवी माँ डिडनेश्वरी का ऐतिहासिक मंदिर स्थित है।"
+    specialEvent: "नवरात्रि के दौरान धार्मिक आयोजन",
+    story: "मल्हार अपने प्राचीन पुरातात्विक अवशेषों और मां डिडनेश्वरी मंदिर के लिए जाना जाता है।"
   }
 };
 
-const detailedPlaces = rawDistricts.map(d => {
-  return d[3].map(placeName => {
-    if (customDetailsMap[placeName]) {
-      return {
-        name: placeName,
-        location: d[1] + ' जिला',
-        category: 'पर्यटन स्थल',
-        ...customDetailsMap[placeName]
-      };
-    } else {
-      return {
-        name: placeName,
-        location: d[1] + ' जिला',
-        category: 'पर्यटन स्थल',
-        bestMonth: 'अक्टूबर से मार्च (सुहाना मौसम)',
-        specialEvent: 'स्थानीय सांस्कृतिक एवं धार्मिक पर्व मेला',
-        story: 'यह पर्यटन स्थल छत्तीसगढ़ की प्राकृतिक सुंदरता और ऐतिहासिक धरोहर का एक महत्वपूर्ण हिस्सा है।'
-      };
-    }
+// हर जिले की जगहों के लिए विवरण तैयार करना।
+const detailedPlaces = rawDistricts.map(district => {
+  return district[3].map(placeName => {
+    const extra = customDetailsMap[placeName] || {
+      bestMonth: "जानकारी की पुष्टि के बाद जोड़ी जाएगी",
+      specialEvent: "कार्यक्रम की जानकारी जल्द जोड़ी जाएगी",
+      story: "इस स्थान का इतिहास और विशेष पहचान रिसर्च के बाद जोड़ी जाएगी।"
+    };
+
+    return {
+      name: placeName,
+      location: district[1] + " जिला",
+      category: "पर्यटन स्थल",
+      ...extra
+    };
   });
 });
 
+// कच्चे डेटा को वेबसाइट के उपयोग लायक रूप में बदलना।
 const districts = rawDistricts.map((d, i) => ({
   englishName: d[0],
   name: d[1],
@@ -343,61 +507,51 @@ const grid = document.getElementById("districtGrid");
 
 function renderDistricts(list) {
   grid.innerHTML = "";
-  list.forEach(d => {
+
+  if (list.length === 0) {
+    grid.textContent = "यह जिला नहीं मिला। नाम दोबारा खोजें।";
+    return;
+  }
+
+  list.forEach(district => {
     const button = document.createElement("button");
+    button.type = "button";
     button.className = "district-card";
 
     const emoji = document.createElement("span");
     emoji.className = "emoji";
-    emoji.textContent = d.emoji;
+    emoji.textContent = district.emoji;
 
     const name = document.createElement("strong");
-    name.textContent = d.name;
+    name.textContent = district.name;
 
     const english = document.createElement("small");
-    english.textContent = d.englishName;
+    english.textContent = district.englishName;
 
     button.append(emoji, name, english);
-    button.onclick = () => openDistrict(d);
+    button.addEventListener("click", () => openDistrict(district));
     grid.appendChild(button);
   });
-
-  if (!list.length) {
-    grid.textContent = "यह जिला नहीं मिला। नाम दोबारा खोजें।";
-  }
 }
 
 function filterDistricts() {
-  const q = document.getElementById("search").value.trim().toLowerCase();
-  renderDistricts(districts.filter(d => 
-    d.englishName.toLowerCase().includes(q) || 
-    d.name.toLowerCase().includes(q)
-  ));
+  const query = document.getElementById("search").value.trim().toLowerCase();
+
+  const filtered = districts.filter(district =>
+    district.englishName.toLowerCase().includes(query) ||
+    district.name.toLowerCase().includes(query)
+  );
+
+  // सर्च के बाद जिला सूची दिखे; पुराना विवरण बंद रहे।
+  document.getElementById("details").classList.add("hidden");
+  renderDistricts(filtered);
 }
 
-function openDistrict(d) {
-  document.getElementById("districtTitle").textContent = d.emoji + " " + d.name;
-  document.getElementById("districtIntro").textContent = d.name + " जिले के पर्यटन स्थलों की जानकारी:";
-  const box = document.getElementById("places");
-  box.innerHTML = "";
+function openDistrict(district) {
+  document.getElementById("districtTitle").textContent =
+    district.emoji + " " + district.name;
 
-  d.places.forEach((place, index) => {
-    const row = document.createElement("div");
-    row.className = "place";
+  document.getElementById("districtIntro").textContent =
+    district.name + " जिले के पर्यटन स्थलों की जानकारी:";
 
-    const button = document.createElement("button");
-    button.className = "place-button";
-    button.textContent = (index + 1) + ". " + place.name;
-    button.style.cssText = "width:100%;text-align:left;background:#f1f5e9;color:#20352b;border:1px solid #dce7d0;border-radius:10px;padding:12px;font-weight:bold;margin:5px 0;";
-
-    const info = document.createElement("div");
-    info.className = "place-info hidden";
-    info.style.cssText = "background:#fbfcf8;border-left:4px solid #397859;padding:12px;margin:8px 0 14px;border-radius:6px;";
-
-    function addInfo(label, value) {
-      const p = document.createElement("p");
-      p.style.margin = "4px 0";
-      const strong = document.createElement("strong");
-      strong.textContent = label + ": ";
-      const span = document.createElement("span");
-      span.textContent = value || "जानकारी जल्
+  c
