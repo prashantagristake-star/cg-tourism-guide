@@ -154,92 +154,280 @@ footer p{font-size:14px}
 </footer>
 
 <script>
-const districts = [
-["Balod","बालोद","🌾",["सियादेवी मंदिर एवं जलप्रपात","तांदुला जलाशय"]],
-["Baloda Bazar-Bhatapara","बलौदाबाजार-भाटापारा","🏞️",["बारनवापारा वन्यजीव अभयारण्य","गिरौदपुरी धाम"]],
-["Balrampur-Ramanujganj","बलरामपुर-रामानुजगंज","🌳",["तातापानी गर्म जलस्रोत","स्थानीय प्राकृतिक स्थल"]],
-["Bastar","बस्तर","💧",["चित्रकोट जलप्रपात","तीरथगढ़ जलप्रपात","कांगेर घाटी राष्ट्रीय उद्यान","बस्तर की जनजातीय संस्कृति"]],
-["Bemetara","बेमेतरा","🌿",["देवकर का प्राचीन मंदिर क्षेत्र","स्थानीय धार्मिक एवं ग्रामीण स्थल"]],
-["Bijapur","बीजापुर","🌲",["इंद्रावती राष्ट्रीय उद्यान क्षेत्र","स्थानीय प्राकृतिक एवं सांस्कृतिक स्थल"]],
-["Bilaspur","बिलासपुर","🏛️",["अचानकमार टाइगर रिजर्व क्षेत्र","रतनपुर महामाया मंदिर","कानन पेंडारी प्राणी उद्यान"]],
-["Dantewada","दंतेवाड़ा","🛕",["दंतेश्वरी मंदिर","बैलाडीला की पहाड़ियाँ (अनुमति व पहुँच की जाँच करें)"]],
-["Dhamtari","धमतरी","🌊",["गंगरेल बांध","सिहावा क्षेत्र","रुद्री जलाशय क्षेत्र"]],
-["Durg","दुर्ग","🏙️",["मैत्री बाग, भिलाई","देवबलोदा का प्राचीन शिव मंदिर"]],
-["Gariaband","गरियाबंद","💦",["जतमई जलप्रपात","घटारानी जलप्रपात","भूतेश्वरनाथ मंदिर"]],
-["Gaurela-Pendra-Marwahi","गौरेला-पेंड्रा-मरवाही","🌲",["अचानकमार क्षेत्र की प्राकृतिक सुंदरता","पेंड्रा के आसपास के दर्शनीय स्थल"]],
-["Janjgir-Champa","जांजगीर-चांपा","🛕",["विष्णु मंदिर, जांजगीर","शिवरीनारायण मंदिर","लक्ष्मणेश्वर मंदिर, खरौद"]],
-["Jashpur","जशपुर","⛰️",["रानीदाह जलप्रपात","देशदेखा क्षेत्र","कैलाश गुफा क्षेत्र"]],
-["Kabirdham","कबीरधाम","🌿",["भोरमदेव मंदिर","मैकल पर्वतीय क्षेत्र"]],
-["Kanker","उत्तर बस्तर कांकेर","🌳",["कांकेर के आसपास की पहाड़ियाँ","गड़िया पहाड़"]],
-["Khairagarh-Chhuikhadan-Gandai","खैरागढ़-छुईखदान-गंडई","🎨",["इंदिरा कला संगीत विश्वविद्यालय, खैरागढ़","स्थानीय ऐतिहासिक एवं सांस्कृतिक स्थल"]],
-["Kondagaon","कोंडागांव","🧶",["बेल मेटल और हस्तशिल्प केंद्र","स्थानीय कला एवं शिल्प ग्राम"]],
-["Korba","कोरबा","💧",["सतरेंगा","बुका जलाशय क्षेत्र","केंदई जलप्रपात"]],
-["Korea","कोरिया","🌳",["गुरु घासीदास राष्ट्रीय उद्यान क्षेत्र","स्थानीय वन एवं जलप्रपात"]],
-["Mahasamund","महासमुंद","🛕",["सिरपुर पुरातात्विक स्थल","लक्ष्मण मंदिर, सिरपुर","खल्लारी माता मंदिर"]],
-["Manendragarh-Chirmiri-Bharatpur","मनेंद्रगढ़-चिरमिरी-भरतपुर","🌲",["चिरमिरी के पहाड़ी दृश्य","स्थानीय प्राकृतिक स्थल"]],
-["Mohla-Manpur-Ambagarh Chowki","मोहला-मानपुर-अंबागढ़ चौकी","🌿",["वन एवं ग्रामीण प्राकृतिक क्षेत्र","स्थानीय सांस्कृतिक स्थल"]],
-["Mungeli","मुंगेली","🐅",["अचानकमार टाइगर रिजर्व क्षेत्र","मदकू द्वीप"]],
-["Narayanpur","नारायणपुर","🎭",["अबूझमाड़ क्षेत्र (प्रवेश नियमों की पुष्टि जरूरी)","स्थानीय जनजातीय कला एवं संस्कृति"]],
-["Raigarh","रायगढ़","🏛️",["राम झरना","सिंघनपुर शैलचित्र क्षेत्र","गोमर्डा अभयारण्य क्षेत्र"]],
-["Raipur","रायपुर","🏙️",["पुरखौती मुक्तांगन","नंदनवन जंगल सफारी","विवेकानंद सरोवर"]],
-["Rajnandgaon","राजनांदगांव","🌿",["मां बम्लेश्वरी मंदिर, डोंगरगढ़","प्रज्ञागिरि, डोंगरगढ़"]],
-["Sakti","सक्ती","🌊",["दमाऊ धारा क्षेत्र","स्थानीय जलाशय एवं धार्मिक स्थल"]],
-["Sarangarh-Bilaigarh","सारंगढ़-बिलाईगढ़","🌾",["गोमर्डा वन्यजीव अभयारण्य क्षेत्र","स्थानीय प्राकृतिक स्थल"]],
-["Sukma","सुकमा","🌳",["शबरी नदी क्षेत्र","स्थानीय प्रकृति एवं संस्कृति स्थल"]],
-["Surajpur","सूरजपुर","💧",["कुदरगढ़ मंदिर","रकसगंडा जलप्रपात क्षेत्र"]],
-["Surguja","सरगुजा","⛰️",["मैनपाट","टाइगर पॉइंट जलप्रपात","महामाया मंदिर, अंबिकापुर"]]
+const rawDistricts = [
+  ["Balod","बालोद","🌾",["सियादेवी मंदिर एवं जलप्रपात","तांदुला जलाशय"]],
+  ["Baloda Bazar-Bhatapara","बलौदाबाजार-भाटापारा","🏞️",["बारनवापारा वन्यजीव अभयारण्य","गिरौदपुरी धाम"]],
+  ["Balrampur-Ramanujganj","बलरामपुर-रामानुजगंज","🌳",["तातापानी गर्म जलस्रोत","स्थानीय प्राकृतिक स्थल"]],
+  ["Bastar","बस्तर","💧",["चित्रकोट जलप्रपात","तीरथगढ़ जलप्रपात","कांगेर घाटी राष्ट्रीय उद्यान","बस्तर की जनजातीय संस्कृति"]],
+  ["Bemetara","बेमेतरा","🌿",["देवकर का प्राचीन मंदिर क्षेत्र","स्थानीय धार्मिक एवं ग्रामीण स्थल"]],
+  ["Bijapur","बीजापुर","🌲",["इंद्रावती राष्ट्रीय उद्यान क्षेत्र","स्थानीय प्राकृतिक एवं सांस्कृतिक स्थल"]],
+  ["Bilaspur","बिलासपुर","🏛️",["अचानकमार टाइगर रिजर्व क्षेत्र","रतनपुर महामाया मंदिर","कानन पेंडारी प्राणी उद्यान"]],
+  ["Dantewada","दंतेवाड़ा","🛕",["दंतेश्वरी मंदिर","बैलाडीला की पहाड़ियाँ"]],
+  ["Dhamtari","धमतरी","🌊",["गंगरेल बांध","सिहावा क्षेत्र","रुद्री जलाशय क्षेत्र"]],
+  ["Durg","दुर्ग","🏙️",["मैत्री बाग, भिलाई","देवबलोदा का प्राचीन शिव मंदिर"]],
+  ["Gariaband","गरियाबंद","💦",["जतमई जलप्रपात","घटारानी जलप्रपात","भूतेश्वरनाथ मंदिर"]],
+  ["Gaurela-Pendra-Marwahi","गौरेला-पेंड्रा-मरवाही","🌲",["अचानकमार क्षेत्र की प्राकृतिक सुंदरता","पेंड्रा के आसपास के दर्शनीय स्थल"]],
+  ["Janjgir-Champa","जांजगीर-चांपा","🛕",["विष्णु मंदिर, जांजगीर","शिवरीनारायण मंदिर","लक्ष्मणेश्वर मंदिर, खरौद"]],
+  ["Jashpur","जशपुर","⛰️",["रानीदाह जलप्रपात","देशदेखा क्षेत्र","कैलाश गुफा क्षेत्र"]],
+  ["Kabirdham","कबीरधाम","🌿",["भोरमदेव मंदिर","मैकल पर्वतीय क्षेत्र"]],
+  ["Kanker","उत्तर बस्तर कांकेर","🌳",["कांकेर की पहाड़ियाँ","गड़िया पहाड़"]],
+  ["Khairagarh-Chhuikhadan-Gandai","खैरागढ़-छुईखदान-गंडई","🎨",["इंदिरा कला संगीत विश्वविद्यालय","स्थानीय ऐतिहासिक एवं सांस्कृतिक स्थल"]],
+  ["Kondagaon","कोंडागांव","🧶",["बेल मेटल और हस्तशिल्प केंद्र","स्थानीय कला एवं शिल्प ग्राम"]],
+  ["Korba","कोरबा","💧",["सतरेंगा","बुका जलाशय क्षेत्र","केंदई जलप्रपात"]],
+  ["Korea","कोरिया","🌳",["अमृतधारा जलप्रपात","अकुरी नाला","रामदहा जलप्रपात"]],
+  ["Mahasamund","महासमुंद","🛕",["सिरपुर पुरातात्विक स्थल","लक्ष्मण मंदिर, सिरपुर","खल्लारी माता मंदिर"]],
+  ["Manendragarh-Chirmiri-Bharatpur","मनेन्द्रगढ़-चिरमिरी-भरतपुर","🌲",["चिरमिरी के पहाड़ी दृश्य","स्थानीय प्राकृतिक स्थल"]],
+  ["Mohla-Manpur-Ambagarh Chowki","मोहला-मानपुर-अंबागढ़ चौकी","🌿",["वन एवं ग्रामीण प्राकृतिक क्षेत्र","स्थानीय सांस्कृतिक स्थल"]],
+  ["Mungeli","मुंगेली","🐅",["अचानकमार टाइगर रिजर्व क्षेत्र","मदकू द्वीप"]],
+  ["Narayanpur","नारायणपुर","🎭",["अबूझमाड़ क्षेत्र","स्थानीय जनजातीय कला एवं संस्कृति"]],
+  ["Raigarh","रायगढ़","🏛️",["राम झरना","सिंघनपुर शैलचित्र क्षेत्र","गोमर्डा अभयारण्य क्षेत्र"]],
+  ["Raipur","रायपुर","🏙️",["पुरखौती मुक्तांगन","नंदनवन जंगल सफारी","विवेकानंद सरोवर"]],
+  ["Rajnandgaon","राजनांदगांव","🌿",["मां बम्लेश्वरी मंदिर, डोंगरगढ़","प्रज्ञागिरि, डोंगरगढ़"]],
+  ["Sakti","सक्ती","🌊",["दमाऊ धारा क्षेत्र","स्थानीय जलाशय एवं धार्मिक स्थल"]],
+  ["Sarangarh-Bilaigarh","सारंगढ़-बिलाईगढ़","🌾",["गोमर्डा वन्यजीव अभयारण्य क्षेत्र","स्थानीय प्राकृतिक स्थल"]],
+  ["Sukma","सुकमा","🌳",["शबरी नदी क्षेत्र","स्थानीय प्रकृति एवं संस्कृति स्थल"]],
+  ["Surajpur","सूरजपुर","💧",["कुदरगढ़ मंदिर","रकसगंडा जलप्रपात क्षेत्र"]],
+  ["Surguja","सरगुजा","⛰️",["मैनपाट","रामगढ़ की पहाड़ियाँ एवं गुफाएँ","ठिनठिनी पत्थर"]]
 ];
+
+// पर्यटन स्थल की विस्तृत जानकारी
+const detailedPlaces = {
+
+  "सरगुजा": [
+    {
+      name: "मैनपाट",
+      location: "अंबिकापुर से लगभग 55 किमी",
+      category: "प्राकृतिक एवं सांस्कृतिक पर्यटन स्थल",
+      identity: "छत्तीसगढ़ का शिमला, तिब्बती बस्ती, उल्टा पानी और टाइगर पॉइंट के लिए प्रसिद्ध।",
+      attraction: "पहाड़ों की ठंडी हवा, हरियाली और सुंदर प्राकृतिक नजारे।",
+      image: "images/mainpat.jpg"
+    },
+    {
+      name: "रामगढ़ की पहाड़ियाँ एवं गुफाएँ",
+      location: "उदयपुर क्षेत्र, सरगुजा",
+      category: "ऐतिहासिक एवं प्राकृतिक स्थल",
+      identity: "सीताबेंगरा और जोगीमारा की प्राचीन गुफाओं तथा कालिदास के मेघदूत से जुड़ी स्थानीय ऐतिहासिक मान्यता के लिए प्रसिद्ध।",
+      attraction: "प्राचीन शैलकला, गुफाएँ और पहाड़ियों का दृश्य।",
+      image: "images/ramgarh.jpg"
+    },
+    {
+      name: "ठिनठिनी पत्थर",
+      location: "अंबिकापुर के आसपास, सरगुजा",
+      category: "प्राकृतिक एवं भूवैज्ञानिक स्थल",
+      identity: "पत्थर पर चोट करने से धातु जैसी आवाज निकलने के लिए प्रसिद्ध।",
+      attraction: "पत्थर की अनोखी ध्वनि और भूवैज्ञानिक विशेषता।",
+      image: "images/thin-thini-patthar.jpg"
+    }
+  ],
+
+  "कोरिया": [
+    {
+      name: "अमृतधारा जलप्रपात",
+      location: "हसदेव नदी, कोरिया जिला",
+      category: "प्राकृतिक पर्यटन स्थल",
+      identity: "चट्टानों से गिरते सुंदर जलप्रपात और आसपास के हरियाली भरे जंगल के लिए प्रसिद्ध।",
+      attraction: "जलप्रपात का दृश्य और अमृतधारा महोत्सव।",
+      image: "images/amritdhara.jpg"
+    },
+    {
+      name: "अकुरी नाला",
+      location: "कोरिया जिला",
+      category: "प्राकृतिक पर्यटन स्थल",
+      identity: "चट्टानों के बीच बहते ठंडे और साफ प्राकृतिक पानी के लिए प्रसिद्ध।",
+      attraction: "गर्मियों में भी ठंडे पानी का अनुभव और शांत प्राकृतिक वातावरण।",
+      image: "images/akuri-nala.jpg"
+    },
+    {
+      name: "रामदहा जलप्रपात",
+      location: "भरतपुर क्षेत्र, आपके दिए विवरण के अनुसार कोरिया जिला",
+      category: "प्राकृतिक पर्यटन स्थल",
+      identity: "घने जंगलों और चट्टानों के बीच बहते आकर्षक झरने के लिए प्रसिद्ध।",
+      attraction: "प्राकृतिक सुंदरता और शांत वातावरण।",
+      image: "images/ramdaha.jpg"
+    }
+  ],
+
+  "जशपुर": [
+    {
+      name: "रानीदाह जलप्रपात",
+      location: "जशपुर जिला",
+      category: "प्राकृतिक पर्यटन स्थल",
+      identity: "चट्टानों और हरियाली के बीच बहते सुंदर प्राकृतिक झरने के लिए प्रसिद्ध।",
+      attraction: "बारिश के मौसम में झरने का शानदार दृश्य।",
+      image: "images/ranidah.jpg"
+    },
+    {
+      name: "कुनकुरी कैथेड्रल",
+      location: "कुनकुरी, जशपुर जिला",
+      category: "धार्मिक एवं स्थापत्य स्थल",
+      identity: "विशाल रोमन कैथोलिक गिरजाघर और अपनी स्थापत्य विशेषताओं के लिए प्रसिद्ध।",
+      attraction: "अनोखी वास्तुकला और विशाल प्रार्थना हॉल।",
+      image: "images/kunkuri-cathedral.jpg"
+    },
+    {
+      name: "कोतेबिरा एवं ईब नदी तट",
+      location: "जशपुर जिला",
+      category: "धार्मिक एवं प्राकृतिक स्थल",
+      identity: "ईब नदी के सुंदर तट, चट्टानों और आसपास की प्राकृतिक घाटियों के लिए प्रसिद्ध।",
+      attraction: "नदी किनारे प्राकृतिक दृश्य और शांत वातावरण।",
+      image: "images/kotebira.jpg"
+    }
+  ]
+};
+
+// सभी जिलों का डेटा तैयार करना
+const districts = rawDistricts.map(d => ({
+  englishName: d[0],
+  name: d[1],
+  emoji: d[2],
+  places: (detailedPlaces[d[1]] || d[3].map(name => ({
+    name: name,
+    location: d[1] + " जिला",
+    category: "पर्यटन स्थल",
+    identity: "इस स्थान की विस्तृत ऐतिहासिक एवं भौगोलिक जानकारी अभी जोड़ी जानी बाकी है।",
+    attraction: "इस पर्यटन स्थल के विशेष आकर्षण की जानकारी जल्द जोड़ी जाएगी।"
+  })))
+}));
 
 const grid = document.getElementById("districtGrid");
 
-function renderDistricts(list){
+function renderDistricts(list) {
   grid.innerHTML = "";
+
   list.forEach(d => {
     const button = document.createElement("button");
     button.className = "district-card";
-    button.innerHTML = `<span class="emoji">${d[2]}</span>
-      <strong>${d[1]}</strong><small>${d[0]}</small>`;
+
+    const emoji = document.createElement("span");
+    emoji.className = "emoji";
+    emoji.textContent = d.emoji;
+
+    const name = document.createElement("strong");
+    name.textContent = d.name;
+
+    const english = document.createElement("small");
+    english.textContent = d.englishName;
+
+    button.append(emoji, name, english);
     button.onclick = () => openDistrict(d);
+
     grid.appendChild(button);
   });
-  if(!list.length){
-    grid.innerHTML = "<p>यह जिला नहीं मिला। नाम दोबारा खोजें।</p>";
+
+  if (!list.length) {
+    grid.textContent = "यह जिला नहीं मिला। नाम दोबारा खोजें।";
   }
 }
 
-function filterDistricts(){
+function filterDistricts() {
   const q = document.getElementById("search").value.trim().toLowerCase();
+
   renderDistricts(districts.filter(d =>
-    d[0].toLowerCase().includes(q) || d[1].toLowerCase().includes(q)
+    d.englishName.toLowerCase().includes(q) ||
+    d.name.toLowerCase().includes(q)
   ));
 }
 
-function openDistrict(d){
-  document.getElementById("districtTitle").textContent = d[2]+" "+d[1];
+// जिले पर क्लिक करने पर उसके पर्यटन स्थल दिखाना
+function openDistrict(d) {
+  document.getElementById("districtTitle").textContent =
+    d.emoji + " " + d.name;
+
   document.getElementById("districtIntro").textContent =
-    d[1]+" जिले की पर्यटन गाइड। यहाँ दी गई जगहों की जानकारी यात्रा से पहले जाँचें।";
+    d.name + " जिले के पर्यटन स्थलों की जानकारी। किसी स्थान के बारे में विस्तार से जानने के लिए उसका बटन दबाएँ।";
+
   const box = document.getElementById("places");
   box.innerHTML = "";
-  d[3].forEach((place,i) => {
+
+  d.places.forEach((place, index) => {
     const row = document.createElement("div");
     row.className = "place";
-    const title = document.createElement("strong");
-    title.textContent = (i+1)+". "+place;
-    const p = document.createElement("p");
-    p.textContent = "यात्रा की योजना बनाने से पहले स्थान और रास्ते की जानकारी की पुष्टि करें।";
-    row.append(title,p);
+
+    const button = document.createElement("button");
+    button.className = "place-button";
+    button.textContent = (index + 1) + ". " + place.name + "  ↓";
+
+    button.style.cssText =
+      "width:100%;text-align:left;background:#f0f5e9;color:#20352b;" +
+      "border:1px solid #dce7d8;border-radius:10px;padding:13px;" +
+      "font-weight:bold;margin:5px 0;";
+
+    const info = document.createElement("div");
+    info.className = "place-info hidden";
+    info.style.cssText =
+      "background:#fbfcf8;border-left:4px solid #397859;" +
+      "padding:12px;margin:8px 0 14px;border-radius:8px;";
+
+    function addInfo(label, value) {
+      const p = document.createElement("p");
+      p.style.margin = "7px 0";
+
+      const strong = document.createElement("strong");
+      strong.textContent = label + ": ";
+
+      const span = document.createElement("span");
+      span.textContent = value || "जानकारी जल्द जोड़ी जाएगी।";
+
+      p.append(strong, span);
+      info.appendChild(p);
+    }
+
+    addInfo("स्थान", place.location);
+    addInfo("प्रकार", place.category);
+    addInfo("किसलिए प्रसिद्ध", place.identity);
+    addInfo("खास आकर्षण", place.attraction);
+
+    if (place.image) {
+      const img = document.createElement("img");
+      img.src = place.image;
+      img.alt = place.name;
+      img.loading = "lazy";
+      img.style.cssText =
+        "width:100%;max-height:260px;object-fit:cover;border-radius:10px;margin-top:8px;";
+
+      img.onerror = () => {
+        img.style.display = "none";
+      };
+
+      info.appendChild(img);
+    }
+
+    button.onclick = () => {
+      const isHidden = info.classList.contains("hidden");
+
+      info.classList.toggle("hidden");
+
+      button.textContent =
+        (index + 1) + ". " + place.name +
+        (isHidden ? "  ↑" : "  ↓");
+    };
+
+    row.append(button, info);
     box.appendChild(row);
   });
+
   document.getElementById("details").classList.remove("hidden");
-  document.getElementById("details").scrollIntoView({behavior:"smooth"});
+  document.getElementById("details").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 
-function closeDetails(){
+function closeDetails() {
   document.getElementById("details").classList.add("hidden");
-  document.getElementById("districts").scrollIntoView({behavior:"smooth"});
+  document.getElementById("districts").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 
-function go(id){
+function go(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+renderDistricts(districts);
+</script>
+ function go(id){
   document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
