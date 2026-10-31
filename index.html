@@ -8,6 +8,27 @@
 <title>CG Tourism Guide | चलो छत्तीसगढ़ घूमते हैं</title>
 
 <style>
+  /* छत्तीसगढ़ स्थापना दिवस स्पेशल बैनर स्टाइल */
+.cg-fest-banner {
+  background: linear-gradient(135deg, #102f28, #27634b);
+  color: #fff;
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 3px solid #d8e9ad;
+}
+.cg-fest-banner span {
+  color: #d8e9ad;
+  font-size: 17px;
+}  
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;
@@ -81,7 +102,32 @@ footer p{font-size:14px}
 </head>
 
 <body>
-<header>
+  <!-- छत्तीसगढ़ स्थापना दिवस 7-दिवसीय ऑटो बैनर -->
+  <div id="cgFestBanner" class="cg-fest-banner" style="display: none;">
+    <span>🌾 छत्तीसगढ़ महतारी की जय!</span> 
+    छत्तीसगढ़ राज्य स्थापना के गौरवशाली 26 वर्ष पूर्ण होने पर समस्त प्रदेशवासियों को हार्दिक बधाई एवं शुभकामनाएँ! 🌿
+  </div>
+
+  <script>
+    const today = new Date();
+    const currentMonth = today.getMonth() + 1; // 11 = नवंबर
+    const currentDate = today.getDate();
+
+    if (currentMonth === 11 && currentDate >= 1 && currentDate <= 7) {
+      document.getElementById("cgFestBanner").style.display = "flex";
+    }
+  </script>
+
+  <!-- आपका मुख्य हेडर (यह सिर्फ एक ही बार रहेगा) -->
+  <header>
+    <div class="logo">🌿 CG Tourism Guide</div>
+    <nav>
+      <button onclick="go('home')">Home</button>
+      <button onclick="go('about')">हमारे बारे में</button>
+      <button onclick="go('districts')">जिले देखें</button>
+    </nav>
+  </header>
+  
   <div class="logo">🌿 CG Tourism Guide</div>
   <nav>
     <button onclick="go('home')">Home</button>
