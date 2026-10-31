@@ -499,3 +499,168 @@ function openPlace(placeName) {
 
 </body>
 </html>
+const divisions = [
+  {
+    name: "सरगुजा संभाग",
+    englishName: "Surguja Division",
+
+    description:
+      "सरगुजा संभाग अपनी पहाड़ियों, झरनों, गुफाओं, ठंडे मौसम और आदिवासी संस्कृति के लिए प्रसिद्ध है। यहाँ प्रकृति और इतिहास दोनों का अनोखा मेल देखने को मिलता है।",
+
+    districts: [
+      {
+        name: "सरगुजा",
+        englishName: "Surguja / Ambikapur",
+
+        places: [
+          {
+            name: "मैनपाट",
+            englishName: "Mainpat",
+            location: "अंबिकापुर से लगभग 55 किमी",
+            category: "प्राकृतिक एवं सांस्कृतिक पर्यटन स्थल",
+            identity:
+              "छत्तीसगढ़ का शिमला, तिब्बती बस्ती, उल्टा पानी और टाइगर पॉइंट।",
+            attraction:
+              "पहाड़ों की ठंडी हवा और प्राकृतिक नजारे।",
+            image: "images/mainpat.jpg"
+          },
+
+          {
+            name: "रामगढ़ की पहाड़ियाँ एवं गुफाएँ",
+            englishName: "Ramgarh Hills and Caves",
+            location: "उदयपुर क्षेत्र, सरगुजा",
+            category: "ऐतिहासिक एवं प्राकृतिक स्थल",
+            identity:
+              "सीताबेंगरा और जोगीमारा की प्राचीन गुफाएँ तथा कालिदास के मेघदूत से जुड़ी स्थानीय ऐतिहासिक मान्यता।",
+            attraction:
+              "प्राचीन शैलकला और पहाड़ियों का दृश्य।",
+            image: "images/ramgarh.jpg"
+          },
+
+          {
+            name: "ठिनठिनी पत्थर",
+            englishName: "Thin-Thini Patthar",
+            location: "अंबिकापुर के आसपास, सरगुजा",
+            category: "प्राकृतिक एवं भूवैज्ञानिक स्थल",
+            identity:
+              "पत्थर पर चोट करने से धातु जैसी आवाज निकलती है।",
+            attraction:
+              "पत्थर की अनोखी ध्वनि।",
+            image: "images/thin-thini-patthar.jpg"
+          }
+        ]
+      },
+
+      {
+        name: "कोरिया",
+        englishName: "Korea / Koriya",
+
+        places: [
+          {
+            name: "अमृतधारा जलप्रपात",
+            englishName: "Amritdhara Falls",
+            location: "हसदेव नदी, कोरिया जिला",
+            category: "प्राकृतिक पर्यटन स्थल",
+            identity:
+              "चट्टानों से गिरता सुंदर जलप्रपात और आसपास का हरियाली भरा जंगल।",
+            attraction: "अमृतधारा महोत्सव।",
+            image: "images/amritdhara.jpg"
+          },
+
+          {
+            name: "अकुरी नाला",
+            englishName: "Akuri Nala",
+            location: "कोरिया जिला",
+            category: "प्राकृतिक पर्यटन स्थल",
+            identity:
+              "चट्टानों के बीच बहता ठंडा और साफ प्राकृतिक पानी।",
+            attraction:
+              "गर्मियों में भी ठंडे पानी का अनुभव, इसलिए इसे छत्तीसगढ़ का प्राकृतिक एयर कंडीशनर कहा जाता है।",
+            image: "images/akuri-nala.jpg"
+          },
+
+          {
+            name: "रामदहा जलप्रपात",
+            englishName: "Ramdaha Falls",
+            location: "भरतपुर क्षेत्र, कोरिया जिला",
+            category: "प्राकृतिक पर्यटन स्थल",
+            identity:
+              "घने जंगलों और चट्टानों के बीच बहता आकर्षक झरना।",
+            attraction:
+              "प्राकृतिक सुंदरता और शांत वातावरण।",
+            image: "images/ramdaha.jpg"
+          }
+        ]
+      },
+
+      {
+        name: "जशपुर",
+        englishName: "Jashpur",
+
+        places: [
+          {
+            name: "रानीदाह जलप्रपात",
+            englishName: "Ranidah Falls",
+            location: "जशपुर जिला",
+            category: "प्राकृतिक पर्यटन स्थल",
+            identity:
+              "चट्टानों और हरियाली के बीच बहता सुंदर प्राकृतिक झरना।",
+            attraction:
+              "बारिश के मौसम में झरने का शानदार दृश्य।",
+            image: "images/ranidah.jpg"
+          },
+
+          {
+            name: "कुनकुरी कैथेड्रल",
+            englishName: "Kunkuri Cathedral",
+            location: "कुनकुरी, जशपुर जिला",
+            category: "धार्मिक एवं स्थापत्य स्थल",
+            identity:
+              "एशिया के प्रसिद्ध बड़े चर्चों में शामिल विशाल रोमन कैथोलिक गिरजाघर।",
+            attraction:
+              "अनोखी वास्तुकला और विशाल प्रार्थना हॉल।",
+            image: "images/kunkuri-cathedral.jpg"
+          },
+
+          {
+            name: "कोतेबिरा एवं ईब नदी तट",
+            englishName: "Kotebira and Ib River Bank",
+            location: "जशपुर जिला",
+            category: "धार्मिक एवं प्राकृतिक स्थल",
+            identity:
+              "ईब नदी का सुंदर तट, चट्टानें और आसपास की प्राकृतिक घाटियाँ।",
+            attraction:
+              "नदी किनारे प्राकृतिक दृश्य और शांत वातावरण।",
+            image: "images/kotebira.jpg"
+          }
+        ]
+      },
+
+      {
+        name: "बलरामपुर-रामानुजगंज",
+        englishName: "Balrampur-Ramanujganj",
+        places: []
+      },
+
+      {
+        name: "मनेन्द्रगढ़-चिरमिरी-भरतपुर",
+        englishName: "Manendragarh-Chirmiri-Bharatpur",
+        places: []
+      },
+
+      {
+        name: "सूरजपुर",
+        englishName: "Surajpur",
+        places: []
+      }
+    ],
+
+    culture: [
+      {
+        name: "करमा उत्सव",
+        description:
+          "सरगुजा और आसपास के आदिवासी क्षेत्रों में करमा पर्व लोकनृत्य, संगीत और प्रकृति से जुड़ी परंपराओं के लिए प्रसिद्ध है।"
+      }
+    ]
+  }
+];
