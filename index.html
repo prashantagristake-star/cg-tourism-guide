@@ -139,7 +139,7 @@ footer p{font-size:14px}
     <p id="districtIntro"></p>
     <h4>घूमने की जगहें</h4>
     <div id="places"></div>
-    <p style="font-size:13px;color:#68786d">
+    <p style="font-size:13px;color:#68786d;margin-top:15px;">
       यात्रा से पहले स्थान, पहुँच, खुलने का समय और प्रवेश नियमों की
       स्थानीय या आधिकारिक स्रोत से पुष्टि करें।
     </p>
@@ -152,7 +152,6 @@ footer p{font-size:14px}
   <p>अपने छत्तीसगढ़ को जानें, घूमें और उसकी प्रकृति को बचाएँ।</p>
   <p>यह स्वतंत्र पर्यटन जानकारी परियोजना है, सरकारी वेबसाइट नहीं।</p>
   
-  <!-- असली विजिटर काउंटर -->
   <div style="text-align: center; padding: 15px; background: #102f28; color: white; margin-top: 20px; border-radius: 8px;">
     <p style="margin:0 0 8px 0;">👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
     <a href="https://www.freecounterstat.com" title="visitor counter code">
@@ -198,98 +197,26 @@ const rawDistricts = [
   ["Surguja","सरगुजा","⛰️",["मैनपाट","रामगढ़ की पहाड़ियाँ एवं गुफाएँ","ठिनठिनी पत्थर"]]
 ];
 
-const detailedPlaces = {
-  "सरगुजा": [
-    {
-      name: "मैनपाट",
-      location: "अंबिकापुर से लगभग 55 किमी",
-      category: "प्राकृतिक एवं सांस्कृतिक पर्यटन स्थल",
-      identity: "छत्तीसगढ़ का शिमला, तिब्बती बस्ती, उल्टा पानी और टाइगर पॉइंट के लिए प्रसिद्ध।",
-      attraction: "पहाड़ों की ठंडी हवा, हरियाली और सुंदर प्राकृतिक नजारे।",
-      image: "images/mainpat.jpg"
-    },
-    {
-      name: "रामगढ़ की पहाड़ियाँ एवं गुफाएँ",
-      location: "उदयपुर क्षेत्र, सरगुजा",
-      category: "ऐतिहासिक एवं प्राकृतिक स्थल",
-      identity: "सीताबेंगरा और जोगीमारा की प्राचीन गुफाओं तथा कालिदास के मेघदूत से जुड़ी स्थानीय ऐतिहासिक मान्यता के लिए प्रसिद्ध।",
-      attraction: "प्राचीन शैलकला, गुफाएँ और पहाड़ियों का दृश्य।",
-      image: "images/ramgarh.jpg"
-    },
-    {
-      name: "ठिनठिनी पत्थर",
-      location: "अंबिकापुर के आसपास, सरगुजा",
-      category: "प्राकृतिक एवं भूवैज्ञानिक स्थल",
-      identity: "पत्थर पर चोट करने से धातु जैसी आवाज निकलने के लिए प्रसिद्ध।",
-      attraction: "पत्थर की अनोखी ध्वनि और भूवैज्ञानिक विशेषता।",
-      image: "images/thin-thini-patthar.jpg"
-    }
-  ],
-  "कोरिया": [
-    {
-      name: "अमृतधारा जलप्रपात",
-      location: "हसदेव नदी, कोरिया जिला",
-      category: "प्राकृतिक पर्यटन स्थल",
-      identity: "चट्टानों से गिरते सुंदर जलप्रपात और आसपास के हरियाली भरे जंगल के लिए प्रसिद्ध।",
-      attraction: "जलप्रपात का दृश्य और अमृतधारा महोत्सव।",
-      image: "images/amritdhara.jpg"
-    },
-    {
-      name: "अकुरी नाला",
-      location: "कोरिया जिला",
-      category: "प्राकृतिक पर्यटन स्थल",
-      identity: "चट्टानों के बीच बहते ठंडे और साफ प्राकृतिक पानी के लिए प्रसिद्ध।",
-      attraction: "गर्मियों में भी ठंडे पानी का अनुभव और शांत प्राकृतिक वातावरण।",
-      image: "images/akuri-nala.jpg"
-    },
-    {
-      name: "रामदहा जलप्रपात",
-      location: "भरतपुर क्षेत्र, कोरिया जिला",
-      category: "प्राकृतिक पर्यटन स्थल",
-      identity: "घने जंगलों और चट्टानों के बीच बहते आकर्षक झरने के लिए प्रसिद्ध।",
-      attraction: "प्राकृतिक सुंदरता और शांत वातावरण।",
-      image: "images/ramdaha.jpg"
-    }
-  ],
-  "जशपुर": [
-    {
-      name: "रानीदाह जलप्रपात",
-      location: "जशपुर जिला",
-      category: "प्राकृतिक पर्यटन स्थल",
-      identity: "चट्टानों और हरियाली के बीच बहते सुंदर प्राकृतिक झरने के लिए प्रसिद्ध।",
-      attraction: "बारिश के मौसम में झरने का शानदार दृश्य।",
-      image: "images/ranidah.jpg"
-    },
-    {
-      name: "कुनकुरी कैथेड्रल",
-      location: "कुनकुरी, जशपुर जिला",
-      category: "धार्मिक एवं स्थापत्य स्थल",
-      identity: "विशाल रोमन कैथोलिक गिरजाघर और अपनी स्थापत्य विशेषताओं के लिए प्रसिद्ध।",
-      attraction: "अनोखी वास्तुकला और विशाल प्रार्थना हॉल।",
-      image: "images/kunkuri-cathedral.jpg"
-    },
-    {
-      name: "कोतेबिरा एवं ईब नदी तट",
-      location: "जशपुर जिला",
-      category: "धार्मिक एवं प्राकृतिक स्थल",
-      identity: "ईब नदी के सुंदर तट, चट्टानों और आसपास की प्राकृतिक घाटियों के लिए प्रसिद्ध।",
-      attraction: "नदी किनारे प्राकृतिक दृश्य और शांत वातावरण।",
-      image: "images/kotebira.jpg"
-    }
-  ]
-};
+// 1. सभी जिलों के पर्यटन स्थलों की dynamic अतिरिक्त जानकारी तैयार करना
+const detailedPlaces = {};
 
+rawDistricts.forEach(d => {
+  detailedPlaces[d[1]] = d[3].map(placeName => ({
+    name: placeName,
+    location: d[1] + " जिला",
+    category: "पर्यटन स्थल",
+    bestMonth: "जानकारी जल्द जोड़ी जाएगी।",
+    specialEvent: "स्थानीय त्योहार और खास कार्यक्रम की जानकारी जल्द जोड़ी जाएगी।",
+    story: "इस पर्यटन स्थल की खास कहानी और पहचान की जानकारी जल्द जोड़ी जाएगी।"
+  }));
+});
+
+// 2. सभी जिलों का डेटा मैप करना
 const districts = rawDistricts.map(d => ({
   englishName: d[0],
   name: d[1],
   emoji: d[2],
-  places: (detailedPlaces[d[1]] || d[3].map(name => ({
-    name: name,
-    location: d[1] + " जिला",
-    category: "पर्यटन स्थल",
-    identity: "इस स्थान की विस्तृत ऐतिहासिक एवं भौगोलिक जानकारी अभी जोड़ी जानी बाकी है।",
-    attraction: "इस पर्यटन स्थल के विशेष आकर्षण की जानकारी जल्द जोड़ी जाएगी।"
-  })))
+  places: detailedPlaces[d[1]]
 }));
 
 const grid = document.getElementById("districtGrid");
@@ -374,10 +301,12 @@ function openDistrict(d) {
       info.appendChild(p);
     }
 
+    // आपके द्वारा जोड़े गए नए फील्ड्स:
     addInfo("स्थान", place.location);
     addInfo("प्रकार", place.category);
-    addInfo("किसलिए प्रसिद्ध", place.identity);
-    addInfo("खास आकर्षण", place.attraction);
+    addInfo("घूमने का सही समय", place.bestMonth);
+    addInfo("खास कार्यक्रम", place.specialEvent);
+    addInfo("कहानी और खास पहचान", place.story);
 
     if (place.image) {
       const img = document.createElement("img");
