@@ -87,7 +87,6 @@ footer p{font-size:14px}
   <nav>
     <button onclick="go('home')">Home</button>
     <button onclick="go('about')">हमारे बारे में</button>
-   <button onclick="go('divisions')">संभाग देखें</button>
     <button onclick="go('districts')">जिले देखें</button>
   </nav>
 </header>
@@ -100,7 +99,7 @@ footer p{font-size:14px}
     <p>झरने, जंगल, मंदिर, संस्कृति और अपने छत्तीसगढ़ की खूबसूरती को जानें।</p>
     <button class="btn" onclick="go('about')">🚪 चलो, सफर शुरू करें</button>
     <br>
-    <button class="btn btn-outline" onclick="go('districts')">सीधे जसंभाग चुनें ↓</button>
+    <button class="btn btn-outline" onclick="go('districts')">सीधे जिले चुनें ↓</button>
   </div>
 </section>
 
@@ -120,41 +119,9 @@ footer p{font-size:14px}
     <p>छत्तीसगढ़ के पर्यटन स्थलों की जानकारी लोगों तक पहुँचाना,
     स्थानीय संस्कृति को बढ़ावा देना और प्रकृति के प्रति जिम्मेदारी
     बढ़ाना, ताकि हम घूमने के साथ अपने पर्यावरण की रक्षा भी करें।</p>
-    <button class="btn" onclick="go('districts')">🚪 अब अपना संभाग चुनें</button>
-  </div>
- </section>
-<section id="divisions-section">
-  <h2 class="section-title">संभाग की सूची</h2>
-  <p class="subtitle">किसी भी संभाग पर क्लिक करके उसके अंतर्गत आने वाले जिले देखें</p>
-  
-  <div class="division-grid">
-    <div class="division-card" onclick="showDivisionDistricts('रायपुर')">
-      <h3>रायपुर संभाग</h3>
-      <p>रायपुर, धमतरी, महासमुंद, गरियाबंद, बलौदा बाजार</p>
-    </div>
-    
-    <div class="division-card" onclick="showDivisionDistricts('बिलासपुर')">
-      <h3>बिलासपुर संभाग</h3>
-      <p>बिलासपुर, रायगढ़, जांजगीर-चांपा, कोरबा, मुंगेली, गौरेला-पेण्ड्रा-मरवाही</p>
-    </div>
-
-    <div class="division-card" onclick="showDivisionDistricts('दुर्ग')">
-      <h3>दुर्ग संभाग</h3>
-      <p>दुर्ग, राजनांदगांव, बालोद, बेमेतरा, कबीरधाम, मोहला-मानपुर, खैरागढ़</p>
-    </div>
-
-    <div class="division-card" onclick="showDivisionDistricts('बस्तर')">
-      <h3>बस्तर संभाग</h3>
-      <p>बस्तर, कांकेर, दंतेवाड़ा, सुकमा, बीजापुर, नारायणपुर, कोंडागांव</p>
-    </div>
-
-    <div class="division-card" onclick="showDivisionDistricts('सरगुजा')">
-      ### सरगुजा संभाग
-      <p>सरगुजा, कोरिया, सूरजपुर, बलरामपुर, जशपुर, मनेंद्रगढ़-चिरमिरी-भरतपुर</p>
-    </div>
+    <button class="btn" onclick="go('districts')">🚪 अब अपना जिला चुनें</button>
   </div>
 </section>
-
 
 <section class="district-section" id="districts">
   <h2 class="section-title">अपने जिले की खोज करें 🗺️</h2>
@@ -187,17 +154,6 @@ footer p{font-size:14px}
 </footer>
 
 <script>
- function showDivisionDistricts(divisionName) {
-  // यहाँ आप सर्च इनपुट में संभाग का नाम ऑटोमैटिक सेट कर सकते हैं
-  const searchInput = document.getElementById('search');
-  if (searchInput) {
-    searchInput.value = divisionName;
-    filterDistricts(); // आपके द्वारा पहले से बना हुआ फ़िल्टर फंक्शन कॉल होगा
-  }
-  
-  // या आप सीधे जिले वाले सेक्शन पर स्क्रॉल कर सकते हैं
-  document.getElementById('districts').scrollIntoView({ behavior: 'smooth' });
-}
 const districts = [
 ["Balod","बालोद","🌾",["सियादेवी मंदिर एवं जलप्रपात","तांदुला जलाशय"]],
 ["Baloda Bazar-Bhatapara","बलौदाबाजार-भाटापारा","🏞️",["बारनवापारा वन्यजीव अभयारण्य","गिरौदपुरी धाम"]],
@@ -233,120 +189,68 @@ const districts = [
 ["Surajpur","सूरजपुर","💧",["कुदरगढ़ मंदिर","रकसगंडा जलप्रपात क्षेत्र"]],
 ["Surguja","सरगुजा","⛰️",["मैनपाट","टाइगर पॉइंट जलप्रपात","महामाया मंदिर, अंबिकापुर"]]
 ];
+
 const grid = document.getElementById("districtGrid");
-const grid = document.getElementById("districtGrid");
 
-function renderDivisions() {
-    grid.innerHTML = "";
-    divisions.forEach(division => {
-        // संभाग का कार्ड बनाएं
-        const divCard = document.createElement("div");
-        divCard.className = "district-card";
-        divCard.innerHTML = <span>📂</span><strong>${division.name}</strong><small>${division.englishName}</small>;
-        divCard.onclick = () => openDivision(division);
-        grid.appendChild(divCard);
-    });
+function renderDistricts(list){
+  grid.innerHTML = "";
+  list.forEach(d => {
+    const button = document.createElement("button");
+    button.className = "district-card";
+    button.innerHTML = `<span class="emoji">${d[2]}</span>
+      <strong>${d[1]}</strong><small>${d[0]}</small>`;
+    button.onclick = () => openDistrict(d);
+    grid.appendChild(button);
+  });
+  if(!list.length){
+    grid.innerHTML = "<p>यह जिला नहीं मिला। नाम दोबारा खोजें।</p>";
+  }
 }
 
-function openDivision(div) {
-    document.getElementById("districtTitle").textContent = div.name;
-    document.getElementById("districtIntro").textContent = div.description;
-    
-    const box = document.getElementById("places");
-    box.innerHTML = "";
-    
-    // संभाग के अंतर्गत आने वाले जिलों और उनकी जगहों को दिखाएं
-    div.districts.forEach(district => {
-        const distHeader = document.createElement("h3");
-        distHeader.textContent = district.name + " (" + district.englishName + ")";
-        box.appendChild(distHeader);
-
-        if (district.places && district.places.length > 0) {
-            district.places.forEach(place => {
-                const row = document.createElement("div");
-                row.className = "place-card";
-                
-                let imgTag = place.image ? <img src="${place.image}" alt="${place.name}"> : '';
-                
-                row.innerHTML = `
-                    ${imgTag}
-                    <h3>${place.name} <span>(${place.englishName})</span></h3>
-                    <p><strong>स्थान:</strong> ${place.location}</p>
-                    <p><strong>श्रेणी:</strong> ${place.category}</p>
-                    <p><strong>विशेषता:</strong> ${place.identity}</p>
-                    <p><strong>आकर्षण:</strong> ${place.attraction}</p>
-                `;
-                box.appendChild(row);
-            });
-        } else {
-            const noData = document.createElement("p");
-            noData.textContent = "इस जिले की जानकारी जल्द ही जोड़ी जाएगी।";
-            box.appendChild(noData);
-        }
-    });
-
-    document.getElementById("details").classList.remove("hidden");
-    document.getElementById("details").scrollIntoView({ behavior: "smooth" });
+function filterDistricts(){
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  renderDistricts(districts.filter(d =>
+    d[0].toLowerCase().includes(q) || d[1].toLowerCase().includes(q)
+  ));
 }
 
-function closeDetails() {
-    document.getElementById("details").classList.add("hidden");
-    document.getElementById("districts").scrollIntoView({ behavior: "smooth" });
+function openDistrict(d){
+  document.getElementById("districtTitle").textContent = d[2]+" "+d[1];
+  document.getElementById("districtIntro").textContent =
+    d[1]+" जिले की पर्यटन गाइड। यहाँ दी गई जगहों की जानकारी यात्रा से पहले जाँचें।";
+  const box = document.getElementById("places");
+  box.innerHTML = "";
+  d[3].forEach((place,i) => {
+    const row = document.createElement("div");
+    row.className = "place";
+    const title = document.createElement("strong");
+    title.textContent = (i+1)+". "+place;
+    const p = document.createElement("p");
+    p.textContent = "यात्रा की योजना बनाने से पहले स्थान और रास्ते की जानकारी की पुष्टि करें।";
+    row.append(title,p);
+    box.appendChild(row);
+  });
+  document.getElementById("details").classList.remove("hidden");
+  document.getElementById("details").scrollIntoView({behavior:"smooth"});
 }
 
-function go(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+function closeDetails(){
+  document.getElementById("details").classList.add("hidden");
+  document.getElementById("districts").scrollIntoView({behavior:"smooth"});
 }
 
-// पेज लोड होने पर संभाग दिखाएं
-renderDivisions();
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+renderDistricts(districts);
 </script>
 </body>
 </html>
-
-   <!-- असली विजिटर काउंटर -->
+<!-- असली विजिटर काउंटर -->
     <div style="text-align: center; padding: 15px; background: #2c3e50; color: white; margin-top: 30px; border-radius: 8px;">
         <p>👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
         <a href="https://www.freecounterstat.com" title="visitor counter code">
             <img src="https://counter1.optistat.ovh/private/freecounterstat.php?c=9938b82h8d82d43e5e49f87c81726353" border="0" title="visitor counter code" alt="visitor counter code">
         </a>
     </div>
-.place-card {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin: 12px 0;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 14px;
-  text-align: left;
-  cursor: pointer;
-}
-
-.place-card img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.place-card h3 {
-  color: #17633e;
-}
-
-.place-card span {
-  color: #087b45;
-  font-weight: bold;
-}
-
-.back-btn {
-  padding: 10px 15px;
-  margin: 10px 0;
-  background: #17633e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-  
