@@ -234,59 +234,72 @@ const districts = [
 ["Surguja","सरगुजा","⛰️",["मैनपाट","टाइगर पॉइंट जलप्रपात","महामाया मंदिर, अंबिकापुर"]]
 ];
 const grid = document.getElementById("districtGrid");
+const grid = document.getElementById("districtGrid");
 
-function renderDistricts(list){
-  grid.innerHTML = "";
-  list.forEach(d => {
-    const button = document.createElement("button");
-    button.className = "district-card";
-    button.innerHTML = `<span class="emoji">${d[2]}</span>
-      <strong>${d[1]}</strong><small>${d[0]}</small>`;
-    button.onclick = () => openDistrict(d);
-    grid.appendChild(button);
-  });
-  if(!list.length){
-    grid.innerHTML = "<p>यह जिला नहीं मिला। नाम दोबारा खोजें।</p>";
-  }
+function renderDivisions() {
+    grid.innerHTML = "";
+    divisions.forEach(division => {
+        // संभाग का कार्ड बनाएं
+        const divCard = document.createElement("div");
+        divCard.className = "district-card";
+        divCard.innerHTML = <span>📂</span><strong>${division.name}</strong><small>${division.englishName}</small>;
+        divCard.onclick = () => openDivision(division);
+        grid.appendChild(divCard);
+    });
 }
 
-function filterDistricts(){
-  const q = document.getElementById("search").value.trim().toLowerCase();
-  renderDistricts(districts.filter(d =>
-    d[0].toLowerCase().includes(q) || d[1].toLowerCase().includes(q)
-  ));
+function openDivision(div) {
+    document.getElementById("districtTitle").textContent = div.name;
+    document.getElementById("districtIntro").textContent = div.description;
+    
+    const box = document.getElementById("places");
+    box.innerHTML = "";
+    
+    // संभाग के अंतर्गत आने वाले जिलों और उनकी जगहों को दिखाएं
+    div.districts.forEach(district => {
+        const distHeader = document.createElement("h3");
+        distHeader.textContent = district.name + " (" + district.englishName + ")";
+        box.appendChild(distHeader);
+
+        if (district.places && district.places.length > 0) {
+            district.places.forEach(place => {
+                const row = document.createElement("div");
+                row.className = "place-card";
+                
+                let imgTag = place.image ? <img src="${place.image}" alt="${place.name}"> : '';
+                
+                row.innerHTML = `
+                    ${imgTag}
+                    <h3>${place.name} <span>(${place.englishName})</span></h3>
+                    <p><strong>स्थान:</strong> ${place.location}</p>
+                    <p><strong>श्रेणी:</strong> ${place.category}</p>
+                    <p><strong>विशेषता:</strong> ${place.identity}</p>
+                    <p><strong>आकर्षण:</strong> ${place.attraction}</p>
+                `;
+                box.appendChild(row);
+            });
+        } else {
+            const noData = document.createElement("p");
+            noData.textContent = "इस जिले की जानकारी जल्द ही जोड़ी जाएगी।";
+            box.appendChild(noData);
+        }
+    });
+
+    document.getElementById("details").classList.remove("hidden");
+    document.getElementById("details").scrollIntoView({ behavior: "smooth" });
 }
 
-function openDistrict(d){
-  document.getElementById("districtTitle").textContent = d[2]+" "+d[1];
-  document.getElementById("districtIntro").textContent =
-    d[1]+" जिले की पर्यटन गाइड। यहाँ दी गई जगहों की जानकारी यात्रा से पहले जाँचें।";
-  const box = document.getElementById("places");
-  box.innerHTML = "";
-  d[3].forEach((place,i) => {
-    const row = document.createElement("div");
-    row.className = "place";
-    const title = document.createElement("strong");
-    title.textContent = (i+1)+". "+place;
-    const p = document.createElement("p");
-    p.textContent = "यात्रा की योजना बनाने से पहले स्थान और रास्ते की जानकारी की पुष्टि करें।";
-    row.append(title,p);
-    box.appendChild(row);
-  });
-  document.getElementById("details").classList.remove("hidden");
-  document.getElementById("details").scrollIntoView({behavior:"smooth"});
+function closeDetails() {
+    document.getElementById("details").classList.add("hidden");
+    document.getElementById("districts").scrollIntoView({ behavior: "smooth" });
 }
 
-function closeDetails(){
-  document.getElementById("details").classList.add("hidden");
-  document.getElementById("districts").scrollIntoView({behavior:"smooth"});
+function go(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
-function go(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-renderDistricts(districts);
+// पेज लोड होने पर संभाग दिखाएं
+renderDivisions();
 </script>
 </body>
 </html>
