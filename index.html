@@ -69,14 +69,14 @@ padding:8px 15px;margin-bottom:16px}
 footer{background:#163c32;color:#e8f0e8;text-align:center;padding:28px 15px}
 footer p{font-size:14px}
 @media(max-width:500px){
- header{padding:10px 4%;flex-wrap:wrap}
- .logo{font-size:17px}
- nav button{font-size:12px;padding:5px 9px}
- section{padding:40px 4%}
- .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .district-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
- .district-card{padding:12px}
- .details{padding:16px}
+  header{padding:10px 4%;flex-wrap:wrap}
+  .logo{font-size:17px}
+  nav button{font-size:12px;padding:5px 9px}
+  section{padding:40px 4%}
+  .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .district-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .district-card{padding:12px}
+  .details{padding:16px}
 }
 </style>
 </head>
@@ -151,6 +151,14 @@ footer p{font-size:14px}
   <strong>🌿 CG Tourism Guide</strong>
   <p>अपने छत्तीसगढ़ को जानें, घूमें और उसकी प्रकृति को बचाएँ।</p>
   <p>यह स्वतंत्र पर्यटन जानकारी परियोजना है, सरकारी वेबसाइट नहीं।</p>
+  
+  <!-- असली विजिटर काउंटर -->
+  <div style="text-align: center; padding: 15px; background: #102f28; color: white; margin-top: 20px; border-radius: 8px;">
+    <p style="margin:0 0 8px 0;">👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
+    <a href="https://www.freecounterstat.com" title="visitor counter code">
+      <img src="https://counter1.optistat.ovh/private/freecounterstat.php?c=9938b82h8d82d43e5e49f87c81726353" border="0" title="visitor counter code" alt="visitor counter code">
+    </a>
+  </div>
 </footer>
 
 <script>
@@ -190,9 +198,7 @@ const rawDistricts = [
   ["Surguja","सरगुजा","⛰️",["मैनपाट","रामगढ़ की पहाड़ियाँ एवं गुफाएँ","ठिनठिनी पत्थर"]]
 ];
 
-// पर्यटन स्थल की विस्तृत जानकारी
 const detailedPlaces = {
-
   "सरगुजा": [
     {
       name: "मैनपाट",
@@ -219,7 +225,6 @@ const detailedPlaces = {
       image: "images/thin-thini-patthar.jpg"
     }
   ],
-
   "कोरिया": [
     {
       name: "अमृतधारा जलप्रपात",
@@ -239,14 +244,13 @@ const detailedPlaces = {
     },
     {
       name: "रामदहा जलप्रपात",
-      location: "भरतपुर क्षेत्र, आपके दिए विवरण के अनुसार कोरिया जिला",
+      location: "भरतपुर क्षेत्र, कोरिया जिला",
       category: "प्राकृतिक पर्यटन स्थल",
       identity: "घने जंगलों और चट्टानों के बीच बहते आकर्षक झरने के लिए प्रसिद्ध।",
       attraction: "प्राकृतिक सुंदरता और शांत वातावरण।",
       image: "images/ramdaha.jpg"
     }
   ],
-
   "जशपुर": [
     {
       name: "रानीदाह जलप्रपात",
@@ -275,7 +279,6 @@ const detailedPlaces = {
   ]
 };
 
-// सभी जिलों का डेटा तैयार करना
 const districts = rawDistricts.map(d => ({
   englishName: d[0],
   name: d[1],
@@ -288,6 +291,7 @@ const districts = rawDistricts.map(d => ({
     attraction: "इस पर्यटन स्थल के विशेष आकर्षण की जानकारी जल्द जोड़ी जाएगी।"
   })))
 }));
+
 const grid = document.getElementById("districtGrid");
 
 function renderDistricts(list) {
@@ -327,7 +331,6 @@ function filterDistricts() {
   ));
 }
 
-// जिले पर क्लिक करने पर उसके पर्यटन स्थल दिखाना
 function openDistrict(d) {
   document.getElementById("districtTitle").textContent =
     d.emoji + " " + d.name;
@@ -370,12 +373,13 @@ function openDistrict(d) {
       p.append(strong, span);
       info.appendChild(p);
     }
- place.story);
+
     addInfo("स्थान", place.location);
     addInfo("प्रकार", place.category);
     addInfo("किसलिए प्रसिद्ध", place.identity);
     addInfo("खास आकर्षण", place.attraction);
 
+    if (place.image) {
       const img = document.createElement("img");
       img.src = place.image;
       img.alt = place.name;
@@ -392,12 +396,9 @@ function openDistrict(d) {
 
     button.onclick = () => {
       const isHidden = info.classList.contains("hidden");
-
       info.classList.toggle("hidden");
-
       button.textContent =
-        (index + 1) + ". " + place.name +
-        (isHidden ? "  ↑" : "  ↓");
+        (index + 1) + ". " + place.name + (isHidden ? "  ↑" : "  ↓");
     };
 
     row.append(button, info);
@@ -425,18 +426,5 @@ function go(id) {
 
 renderDistricts(districts);
 </script>
- function go(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-renderDistricts(districts);
-</script>
 </body>
 </html>
-<!-- असली विजिटर काउंटर -->
-    <div style="text-align: center; padding: 15px; background: #2c3e50; color: white; margin-top: 30px; border-radius: 8px;">
-        <p>👀 इस वेबसाइट पर कुल विजिटर्स की संख्या:</p>
-        <a href="https://www.freecounterstat.com" title="visitor counter code">
-            <img src="https://counter1.optistat.ovh/private/freecounterstat.php?c=9938b82h8d82d43e5e49f87c81726353" border="0" title="visitor counter code" alt="visitor counter code">
-        </a>
-    </div>
