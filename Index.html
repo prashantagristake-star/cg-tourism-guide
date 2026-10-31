@@ -88,6 +88,8 @@ footer p{font-size:14px}
     <button onclick="go('home')">Home</button>
     <button onclick="go('about')">हमारे बारे में</button>
     <button onclick="go('districts')">जिले देखें</button>
+   <button onclick="go('divisions')">संभाग देखें</button>
+   
   </nav>
 </header>
 
@@ -122,6 +124,38 @@ footer p{font-size:14px}
     <button class="btn" onclick="go('districts')">🚪 अब अपना जिला चुनें</button>
   </div>
 </section>
+ <section id="divisions-section">
+  <h2 class="section-title">संभाग की सूची</h2>
+  <p class="subtitle">किसी भी संभाग पर क्लिक करके उसके अंतर्गत आने वाले जिले देखें</p>
+  
+  <div class="division-grid">
+    <div class="division-card" onclick="showDivisionDistricts('रायपुर')">
+      <h3>रायपुर संभाग</h3>
+      <p>रायपुर, धमतरी, महासमुंद, गरियाबंद, बलौदा बाजार</p>
+    </div>
+    
+    <div class="division-card" onclick="showDivisionDistricts('बिलासपुर')">
+      <h3>बिलासपुर संभाग</h3>
+      <p>बिलासपुर, रायगढ़, जांजगीर-चांपा, कोरबा, मुंगेली, गौरेला-पेण्ड्रा-मरवाही</p>
+    </div>
+
+    <div class="division-card" onclick="showDivisionDistricts('दुर्ग')">
+      <h3>दुर्ग संभाग</h3>
+      <p>दुर्ग, राजनांदगांव, बालोद, बेमेतरा, कबीरधाम, मोहला-मानपुर, खैरागढ़</p>
+    </div>
+
+    <div class="division-card" onclick="showDivisionDistricts('बस्तर')">
+      <h3>बस्तर संभाग</h3>
+      <p>बस्तर, कांकेर, दंतेवाड़ा, सुकमा, बीजापुर, नारायणपुर, कोंडागांव</p>
+    </div>
+
+    <div class="division-card" onclick="showDivisionDistricts('सरगुजा')">
+      ### सरगुजा संभाग
+      <p>सरगुजा, कोरिया, सूरजपुर, बलरामपुर, जशपुर, मनेंद्रगढ़-चिरमिरी-भरतपुर</p>
+    </div>
+  </div>
+ </section>
+ 
 
 <section class="district-section" id="districts">
   <h2 class="section-title">अपने जिले की खोज करें 🗺️</h2>
@@ -154,6 +188,18 @@ footer p{font-size:14px}
 </footer>
 
 <script>
+ <script>
+function showDivisionDistricts(divisionName) {
+  const searchInput = document.getElementById('search');
+  if (searchInput) {
+    searchInput.value = divisionName;
+    filterDistricts();
+  }
+  document.getElementById('districts').scrollIntoView({ behavior: 'smooth' });
+}
+
+const districts = [
+ 
 const districts = [
 ["Balod","बालोद","🌾",["सियादेवी मंदिर एवं जलप्रपात","तांदुला जलाशय"]],
 ["Baloda Bazar-Bhatapara","बलौदाबाजार-भाटापारा","🏞️",["बारनवापारा वन्यजीव अभयारण्य","गिरौदपुरी धाम"]],
