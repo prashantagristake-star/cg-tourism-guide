@@ -275,19 +275,22 @@ const detailedPlaces = {
   ]
 };
 
-// सभी जिलों का डेटा तैयार करना
-const districts = rawDistricts.map(d => ({
-  englishName: d[0],
-  name: d[1],
-  emoji: d[2],
-  places: (detailedPlaces[d[1]] || d[3].map(name => ({
-    name: name,
+// सभी जिलों के पर्यटन स्थलों की अतिरिक्त जानकारी
+const detailedPlaces = {};
+
+rawDistricts.forEach(d => {
+  detailedPlaces[d[1]] = d[3].map(placeName => ({
+    name: placeName,
     location: d[1] + " जिला",
     category: "पर्यटन स्थल",
-    identity: "इस स्थान की विस्तृत ऐतिहासिक एवं भौगोलिक जानकारी अभी जोड़ी जानी बाकी है।",
-    attraction: "इस पर्यटन स्थल के विशेष आकर्षण की जानकारी जल्द जोड़ी जाएगी।"
-  })))
-}));
+
+    bestMonth: "जानकारी जल्द जोड़ी जाएगी।",
+
+    specialEvent: "स्थानीय त्योहार और खास कार्यक्रम की जानकारी जल्द जोड़ी जाएगी।",
+
+    story: "इस पर्यटन स्थल की खास कहानी और पहचान की जानकारी जल्द जोड़ी जाएगी।"
+  }));
+});
 
 const grid = document.getElementById("districtGrid");
 
@@ -372,11 +375,11 @@ function openDistrict(d) {
       info.appendChild(p);
     }
 
-    addInfo("स्थान", place.location);
-    addInfo("प्रकार", place.category);
-    addInfo("किसलिए प्रसिद्ध", place.identity);
-    addInfo("खास आकर्षण", place.attraction);
-
+   addInfo("स्थान", place.location);
+addInfo("प्रकार", place.category);
+addInfo("घूमने का सही समय", place.bestMonth);
+addInfo("खास कार्यक्रम", place.specialEvent);
+addInfo("कहानी और खास पहचान", place.story);
     if (place.image) {
       const img = document.createElement("img");
       img.src = place.image;
